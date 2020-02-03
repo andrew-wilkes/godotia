@@ -57,11 +57,14 @@ func turn_player():
 func move_player_sideways(delta):
 	var player_speed = PLAYER_SPEED.x * delta
 	if player_direction == LEFT and get_player_distance_to_right() > 0:
-		player.position.x += player_speed
-		scroll_position += player_speed
+		change_position(player_speed)
 	if player_direction == RIGHT and get_player_distance_to_left() > 0:
-		player.position.x -= player_speed
-		scroll_position -= player_speed
+		change_position(-player_speed)
+
+
+func change_position(delta):
+		player.position.x += delta
+		scroll_position += delta
 
 
 func get_player_distance_to_left():
