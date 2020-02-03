@@ -1,13 +1,12 @@
 extends Node2D
 
-const SEED = 24
+const SEED = 7
 const GRID_SIZE = 16.0
 const MIN_NUM_POINTS = 5000
 const MAX_HEIGHT = 300
 
 var line
 var base_level
-var end_pos
 var flats = []
 var last_point
 
@@ -34,8 +33,7 @@ func add_points():
 		pos.y += (rng.randi() % 3 - 1) * GRID_SIZE # -1, 0, 1 * GRID_SIZE
 		pos.y = clamp(pos.y, -MAX_HEIGHT, 0)
 		add_point(pos)
-	end_pos = pos.x
-	print("End pos: %d Flats: %d" % [end_pos, flats.size()])
+	print("End pos: %d Flats: %d" % [pos.x, flats.size()])
 
 
 func add_point(p):

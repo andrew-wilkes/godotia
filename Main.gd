@@ -18,8 +18,9 @@ var player
 func _ready():
 	background = $ParallaxBackground
 	terrain = find_node("Terrain")
-	terrain.get_parent().motion_mirroring.x = terrain.end_pos
+	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
 	player = $Player
+	player.position.x = PLAYER_MARGIN
 
 
 func _process(delta):
