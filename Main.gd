@@ -2,17 +2,17 @@ extends Node2D
 
 const THRUST = 500
 const MAX_SPEED = THRUST
-const PLAYER_MARGIN = 128
 const PLAYER_SPEED = Vector2(THRUST, THRUST)
+const PLAYER_MARGIN = 128
 
 enum { LEFT, RIGHT }
 
 var background
 var terrain
+var player
 var scroll_position = 0
 var speed = 0
 var player_direction = RIGHT
-var player
 
 func _ready():
 	background = $ParallaxBackground
@@ -35,9 +35,9 @@ func process_inputs(delta):
 	if Input.is_action_pressed("ui_right"):
 		speed = clamp(speed - THRUST * delta, -MAX_SPEED, MAX_SPEED)
 	if Input.is_action_pressed("ui_up") and player.position.y > 0:
-			player.position.y -= PLAYER_SPEED.y * delta
+		player.position.y -= PLAYER_SPEED.y * delta
 	if Input.is_action_pressed("ui_down") and player.position.y < terrain.base_level:
-			player.position.y += PLAYER_SPEED.y * delta
+		player.position.y += PLAYER_SPEED.y * delta
 
 
 func move_background(delta):
@@ -63,8 +63,8 @@ func move_player_sideways(delta):
 
 
 func change_position(delta):
-		player.position.x += delta
-		scroll_position += delta
+	player.position.x += delta
+	scroll_position += delta
 
 
 func get_player_distance_to_left():
