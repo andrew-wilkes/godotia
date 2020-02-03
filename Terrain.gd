@@ -1,8 +1,9 @@
 extends Node2D
 
 const SEED = 24
-const GRID_SIZE = 16
+const GRID_SIZE = 16.0
 const MIN_NUM_POINTS = 5000
+const MAX_HEIGHT = 300
 
 var line
 var base_level
@@ -31,14 +32,14 @@ func add_points():
 	while pos.x < MIN_NUM_POINTS or abs(pos.y) > 0:
 		pos.x += GRID_SIZE
 		pos.y += (rng.randi() % 3 - 1) * GRID_SIZE # -1, 0, 1 * GRID_SIZE
+		pos.y = clamp(pos.y, -MAX_HEIGHT, 0)
 		add_point(pos)
 	end_pos = pos.x
 	print("End pos: %d Flats: %d" % [end_pos, flats.size()])
 
 
 func add_point(p):
-	# Clip points that are below base level
-	var point = Vector2(p.x, -max(0, p.y))
+	var point = Vector2(p.x, p.y)
 	line.add_point(point)
 	# Save points of the flat sections of terrain
 	if last_point and last_point.y == point.y:
