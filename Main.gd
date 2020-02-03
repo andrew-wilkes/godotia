@@ -1,10 +1,9 @@
 extends Node2D
 
 const THRUST = 500
-const MAX_SPEED = 500
+const MAX_SPEED = THRUST
 const PLAYER_MARGIN = 128
-const PLAYER_SIDE_SPEED = 500
-const PLAYER_VERTICAL_SPEED = 500
+const PLAYER_SPEED = Vector2(THRUST, THRUST)
 
 enum { LEFT, RIGHT }
 
@@ -37,10 +36,10 @@ func process_inputs(delta):
 		speed = clamp(speed - THRUST * delta, -MAX_SPEED, MAX_SPEED)
 	if Input.is_action_pressed("ui_up"):
 		if player.position.y > 0:
-			player.position.y -= PLAYER_VERTICAL_SPEED * delta
+			player.position.y -= PLAYER_SPEED.y * delta
 	if Input.is_action_pressed("ui_down"):
 		if player.position.y < terrain.base_level:
-			player.position.y += PLAYER_VERTICAL_SPEED * delta
+			player.position.y += PLAYER_SPEED.y * delta
 
 
 func move_background(delta):
@@ -58,7 +57,7 @@ func turn_player():
 
 
 func move_player_sideways(delta):
-	var player_speed = PLAYER_SIDE_SPEED * delta
+	var player_speed = PLAYER_SPEED.x * delta
 	if player_direction == LEFT and get_player_distance_to_right() > 0:
 		player.position.x += player_speed
 		scroll_position += player_speed
