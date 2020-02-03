@@ -34,11 +34,9 @@ func process_inputs(delta):
 		speed = clamp(speed + THRUST * delta, -MAX_SPEED, MAX_SPEED)
 	if Input.is_action_pressed("ui_right"):
 		speed = clamp(speed - THRUST * delta, -MAX_SPEED, MAX_SPEED)
-	if Input.is_action_pressed("ui_up"):
-		if player.position.y > 0:
+	if Input.is_action_pressed("ui_up") and player.position.y > 0:
 			player.position.y -= PLAYER_SPEED.y * delta
-	if Input.is_action_pressed("ui_down"):
-		if player.position.y < terrain.base_level:
+	if Input.is_action_pressed("ui_down") and player.position.y < terrain.base_level:
 			player.position.y += PLAYER_SPEED.y * delta
 
 
