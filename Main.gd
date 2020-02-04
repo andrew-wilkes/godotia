@@ -10,6 +10,7 @@ enum { LEFT, RIGHT }
 var background
 var terrain
 var player
+var anim : AnimationPlayer
 var scroll_position = 0
 var speed = 0
 var player_direction = RIGHT
@@ -20,6 +21,7 @@ func _ready():
 	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
 	player = $Player
 	player.position.x = PLAYER_MARGIN
+	anim = $AnimationPlayer
 
 
 func _process(delta):
@@ -49,9 +51,11 @@ func turn_player():
 	if player_direction == RIGHT and speed > 0:
 		player_direction = LEFT
 		print("Player turned to left")
+		anim.play("PlayerTurn")
 	if player_direction == LEFT and speed < 0:
 		player_direction = RIGHT
 		print("Player turned to right")
+		anim.play_backwards("PlayerTurn")
 
 
 func move_player_sideways(delta):

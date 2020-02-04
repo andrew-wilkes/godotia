@@ -1,8 +1,26 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Terrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://textures/plane.png" type="Texture" id=3]
+[ext_resource path="res://textures/ufo-16.png" type="Texture" id=4]
+[ext_resource path="res://textures/ufo-32.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "PlayerTurn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ) ]
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,6 +31,17 @@ script = ExtResource( 1 )
 
 [node name="Terrain" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource( 2 )]
 
+[node name="ufo-16" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 572, 116 )
+texture = ExtResource( 4 )
+
+[node name="ufo-32" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 764, 264 )
+texture = ExtResource( 5 )
+
 [node name="Player" type="Sprite" parent="."]
-position = Vector2( 475, 250 )
+position = Vector2( 432, 279 )
 texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/PlayerTurn = SubResource( 1 )
