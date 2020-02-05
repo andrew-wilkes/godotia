@@ -9,4 +9,3 @@ script = ExtResource( 1 )
 position = Vector2( 0, 202.398 )
 width = 1.0
 default_color = Color( 0.168627, 0.858824, 0, 1 )
-texture_mode = 0

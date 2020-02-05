@@ -27,6 +27,7 @@ func _ready():
 func start_game():
 	player.position.x = PLAYER_MARGIN
 	# Add structures to terrain flats
+	Structures.coors = terrain.get_points_for_structures(Structures.DENSITY)
 	for point in Structures.coors:
 		var item = Structures.get_item(point, terrain.GRID_SIZE)
 		item.add_to_group("structures")

@@ -18,7 +18,6 @@ func _ready():
 # warning-ignore:return_value_discarded
 	get_tree().get_root().connect("size_changed", self, "set_base_level")
 	add_points()
-	add_structures()
 
 
 func set_base_level():
@@ -48,7 +47,17 @@ func add_point(p):
 	last_point = point
 
 
-func add_structures():
-	flats.shuffle()
-	for i in range(0, flats.size() * Structures.DENSITY):
-		Structures.append_point(flats[i])
+func get_points_for_structures(density: float):
+	var points = []
+	var last_y = null
+	for i in range(flats.size()):
+		var point = flats[i]
+		# Avoid adjacent structures
+		if point.y != last_y:
+			# Consider placing a structure at this point
+			if randf() <= density:
+				points.append(point)
+				last_y = point.y
+				continue
+		last_y = null
+	return points
