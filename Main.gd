@@ -8,7 +8,7 @@ const PLAYER_MARGIN = 128
 enum { LEFT, RIGHT }
 
 var background
-var terrain
+var terrain : Terrain
 var player
 var anim : AnimationPlayer
 var scroll_position = 0
@@ -20,8 +20,17 @@ func _ready():
 	terrain = find_node("Terrain")
 	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
 	player = $Player
-	player.position.x = PLAYER_MARGIN
 	anim = $AnimationPlayer
+	start_game()
+
+
+func start_game():
+	player.position.x = PLAYER_MARGIN
+	# Add structures to terrain flats
+	for point in Structures.coors:
+		var item = Structures.get_item(point, terrain.GRID_SIZE)
+		item.add_to_group("structures")
+		terrain.line.add_child(item)
 
 
 func _process(delta):

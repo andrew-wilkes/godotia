@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Terrain
+
 const SEED = 7
 const GRID_SIZE = 16.0
 const MIN_NUM_POINTS = 5000
@@ -16,6 +18,7 @@ func _ready():
 # warning-ignore:return_value_discarded
 	get_tree().get_root().connect("size_changed", self, "set_base_level")
 	add_points()
+	add_structures()
 
 
 func set_base_level():
@@ -43,3 +46,9 @@ func add_point(p):
 	if last_point and last_point.y == point.y:
 		flats.append(point)
 	last_point = point
+
+
+func add_structures():
+	flats.shuffle()
+	for i in range(0, flats.size() * Structures.DENSITY):
+		Structures.append_point(flats[i])

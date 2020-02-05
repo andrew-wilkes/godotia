@@ -1,9 +1,12 @@
 extends Node2D
 
 const TEST = true
+const DENSITY = 0.3
+
+var coors = []
 
 func generate():
-	return get_child(randi() % get_child_count()) as Structure
+	return get_child(randi() % get_child_count()).duplicate() as Structure
 
 
 func _ready():
@@ -12,3 +15,13 @@ func _ready():
 			print(generate().title)
 	else:
 		visible = false
+
+
+func append_point(point: Vector2):
+	coors.append(point)
+
+
+func get_item(point: Vector2, grid_size: float):
+	var item = generate()
+	item.position = point - Vector2(grid_size, grid_size)
+	return item

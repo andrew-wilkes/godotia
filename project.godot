@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Structure",
 "language": "GDScript",
 "path": "res://Structure.gd"
+}, {
+"base": "Node2D",
+"class": "Terrain",
+"language": "GDScript",
+"path": "res://Terrain.gd"
 } ]
 _global_script_class_icons={
-"Structure": ""
+"Structure": "",
+"Terrain": ""
 }
 
 [application]

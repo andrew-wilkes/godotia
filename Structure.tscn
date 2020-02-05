@@ -5,4 +5,5 @@
 
 [node name="Structure" type="Sprite"]
 texture = ExtResource( 2 )
+centered = false
 script = ExtResource( 1 )
