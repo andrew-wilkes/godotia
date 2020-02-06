@@ -1,26 +1,27 @@
 extends Node2D
 
 const THRUST = 500
-const MAX_SPEED = THRUST
+const MAX_SPEED = THRUST # Same number re-use, saves editing later maybe?
 const PLAYER_SPEED = Vector2(THRUST, THRUST)
 const PLAYER_MARGIN = 128
 
 enum { LEFT, RIGHT }
 
-var background
+var background : ParallaxBackground
 var terrain : Terrain
-var player
 var anim : AnimationPlayer
+var player
 var scroll_position = 0
 var speed = 0
 var player_direction = RIGHT
 
 func _ready():
 	background = $ParallaxBackground
-	terrain = find_node("Terrain")
-	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
 	player = $Player
 	anim = $AnimationPlayer
+	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
+	terrain = find_node("Terrain")
+	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
 	start_game()
 
 
@@ -57,17 +58,6 @@ func move_background(delta):
 	background.scroll_offset.x = scroll_position
 
 
-func turn_player():
-	if player_direction == RIGHT and speed > 0:
-		player_direction = LEFT
-		print("Player turned to left")
-		anim.play("PlayerTurn")
-	if player_direction == LEFT and speed < 0:
-		player_direction = RIGHT
-		print("Player turned to right")
-		anim.play_backwards("PlayerTurn")
-
-
 func move_player_sideways(delta):
 	var player_speed = PLAYER_SPEED.x * delta
 	if player_direction == LEFT and get_player_distance_to_right() > 0:
@@ -87,3 +77,14 @@ func get_player_distance_to_left():
 
 func get_player_distance_to_right():
 	return get_viewport_rect().size.x - PLAYER_MARGIN - player.position.x
+
+
+func turn_player():
+	if player_direction == RIGHT and speed > 0:
+		player_direction = LEFT
+		print("Player turned to left")
+		anim.play("PlayerTurn")
+	if player_direction == LEFT and speed < 0:
+		player_direction = RIGHT
+		print("Player turned to right")
+		anim.play_backwards("PlayerTurn")

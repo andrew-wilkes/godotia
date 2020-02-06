@@ -17,10 +17,6 @@ func _ready():
 		visible = false
 
 
-func append_point(point: Vector2):
-	coors.append(point)
-
-
 func get_item(point: Vector2, grid_size: float):
 	var item = generate()
 	item.position = point - Vector2(grid_size, grid_size)
