@@ -4,7 +4,7 @@ class_name Terrain
 
 const SEED = 7
 const GRID_SIZE = 16.0
-const MIN_NUM_POINTS = 5000
+const MAX_X_TARGET = 5000
 const MAX_HEIGHT = 300
 
 var line
@@ -38,7 +38,7 @@ func add_points():
 	rng.set_seed(SEED)
 	var pos = Vector2(0, 0)
 	_add_point(pos)
-	while pos.x < MIN_NUM_POINTS or abs(pos.y) > 0:
+	while pos.x < MAX_X_TARGET or abs(pos.y) > 0:
 		pos.x += GRID_SIZE
 		pos.y += (rng.randi() % 3 - 1) * GRID_SIZE # -1, 0, 1 * GRID_SIZE
 		pos.y = clamp(pos.y, -MAX_HEIGHT, 0)
