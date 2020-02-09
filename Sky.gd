@@ -10,7 +10,7 @@ func _ready():
 
 func _resize():
 	var size = get_viewport_rect().size
-	rect_size =size * Vector2(2.0, 1.0)
+	rect_size = size
 	material.set_shader_param("viewport_size", size)
 
 

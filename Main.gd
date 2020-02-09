@@ -4,6 +4,7 @@ const THRUST = 500
 const MAX_SPEED = THRUST # Same number re-use, saves editing later maybe?
 const PLAYER_SPEED = Vector2(THRUST, THRUST)
 const PLAYER_MARGIN = 128
+const TOP_LEVEL = 14
 
 enum { LEFT, RIGHT }
 
@@ -49,7 +50,7 @@ func process_inputs(delta):
 		speed = clamp(speed + THRUST * delta, -MAX_SPEED, MAX_SPEED)
 	if Input.is_action_pressed("ui_right"):
 		speed = clamp(speed - THRUST * delta, -MAX_SPEED, MAX_SPEED)
-	if Input.is_action_pressed("ui_up") and player.position.y > 0:
+	if Input.is_action_pressed("ui_up") and player.position.y > TOP_LEVEL:
 		player.position.y -= PLAYER_SPEED.y * delta
 	if Input.is_action_pressed("ui_down") and player.position.y < terrain.base_level:
 		player.position.y += PLAYER_SPEED.y * delta
