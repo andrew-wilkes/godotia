@@ -8,6 +8,7 @@ const PLAYER_MARGIN = 128
 enum { LEFT, RIGHT }
 
 var background : ParallaxBackground
+var sky
 var terrain : Terrain
 var anim : AnimationPlayer
 var player
@@ -17,6 +18,7 @@ var player_direction = RIGHT
 
 func _ready():
 	background = $ParallaxBackground
+	sky = find_node("Sky")
 	player = $Player
 	anim = $AnimationPlayer
 	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
@@ -56,6 +58,7 @@ func process_inputs(delta):
 func move_background(delta):
 	scroll_position += speed * delta
 	background.scroll_offset.x = scroll_position
+	sky.set_offset(scroll_position)
 
 
 func move_player_sideways(delta):

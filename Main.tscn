@@ -1,13 +1,21 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Terrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://textures/plane.png" type="Texture" id=3]
 [ext_resource path="res://textures/ufo-16.png" type="Texture" id=4]
 [ext_resource path="res://textures/ufo-32.png" type="Texture" id=5]
+[ext_resource path="res://textures/shaders/star-sky.shader" type="Shader" id=6]
+[ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://Sky.gd" type="Script" id=8]
 
-[sub_resource type="Animation" id=1]
-resource_name = "PlayerTurn"
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 6 )
+shader_param/octaves = 5
+shader_param/viewport_size = Vector2( 800, 600 )
+shader_param/x_offset = 0.0
+
+[sub_resource type="Animation" id=2]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Player:scale")
@@ -27,6 +35,17 @@ script = ExtResource( 1 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
+[node name="Sky" type="TextureRect" parent="ParallaxBackground"]
+material = SubResource( 1 )
+margin_right = 1024.0
+margin_bottom = 599.0
+texture = ExtResource( 7 )
+expand = true
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Terrain" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource( 2 )]
@@ -44,4 +63,4 @@ position = Vector2( 432, 279 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/PlayerTurn = SubResource( 1 )
+anims/PlayerTurn = SubResource( 2 )
