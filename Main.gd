@@ -13,6 +13,7 @@ var sky
 var terrain : Terrain
 var anim : AnimationPlayer
 var player
+var map
 var scroll_position = 0
 var speed = 0
 var player_direction = RIGHT

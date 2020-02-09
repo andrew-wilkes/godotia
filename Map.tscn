@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Map.gd" type="Script" id=1]
+
+[node name="Map" type="ColorRect"]
+margin_right = 400.0
+margin_bottom = 100.0
+color = Color( 0.462745, 0.462745, 0.462745, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.0
+default_color = Color( 0.00784314, 0.764706, 0, 1 )

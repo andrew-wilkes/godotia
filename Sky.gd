@@ -1,4 +1,4 @@
-extends TextureRect
+extends ColorRect
 
 export var scroll_scale = 0.7
 
