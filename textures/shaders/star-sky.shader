@@ -1,3 +1,4 @@
+// Much of this code was adapted from: https://www.shadertoy.com/view/MtB3zW
 shader_type canvas_item;
 
 uniform int octaves = 5;
