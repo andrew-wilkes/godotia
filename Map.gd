@@ -9,6 +9,7 @@ const ITEM_SCALE = Vector2(SCALE, SCALE)
 var coor_scale : Vector2
 var line: Line2D
 var structures = {}
+var player
 
 func _ready():
 	line = $Line2D
@@ -26,17 +27,35 @@ func resize(terrain: Terrain, y_size):
 	set_points(terrain)
 
 
-func add_structures(grid_size):
+func add_structures():
 	for s in get_tree().get_nodes_in_group("structures"):
 		var node = s.duplicate()
 		node.scale = ITEM_SCALE
 		node.position *= coor_scale
 		node.position -= Vector2(DX, DX)
 		line.add_child(node)
-		structures[s.get_instance_id()] = node
-	pass
 
 
+func add_player(p, scroll_position, terrain): 
+	player = p.duplicate()
+	position_player(p, scroll_position, terrain)
+	add_child(player)
 
-func _process(delta):
+
+func position_player(p, scroll_position: int, terrain):
+	var max_x = terrain.last_point.x
+	player.scale = ITEM_SCALE
+	var x = max_x - scroll_position + p.position.x
+	if x > max_x:
+		x = x - max_x
+	if x < 0:
+		x = max_x - x
+	player.position = Vector2(x, p.position.y) * coor_scale
+
+
+func turn_player():
+	player.flip_h = !player.flip_h
+
+
+func _process(_delta):
 	pass

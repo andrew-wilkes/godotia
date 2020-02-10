@@ -27,6 +27,7 @@ func _ready():
 	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
 	terrain = find_node("Terrain")
 	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
+	# Start in the middle of the map
 	scroll_position = terrain.last_point.x / 2
 	# warning-ignore:return_value_discarded
 	get_tree().get_root().connect("size_changed", self, "resize")
@@ -51,7 +52,8 @@ func start_game():
 		var item = Structures.get_item(point, terrain.GRID_SIZE)
 		item.add_to_group("structures")
 		terrain.line.add_child(item)
-	map.add_structures(terrain.GRID_SIZE)
+	map.add_structures()
+	map.add_player(player, scroll_position, terrain)
 
 
 func _process(delta):
@@ -59,6 +61,7 @@ func _process(delta):
 	move_background(delta)
 	turn_player()
 	move_player_sideways(delta)
+	map.position_player(player, scroll_position, terrain)
 
 
 func process_inputs(delta):
@@ -74,6 +77,10 @@ func process_inputs(delta):
 
 func move_background(delta):
 	scroll_position += speed * delta
+	if scroll_position > terrain.last_point.x:
+		scroll_position -= terrain.last_point.x
+	if scroll_position < 0:
+		scroll_position += terrain.last_point.x
 	background.scroll_offset.x = scroll_position
 	sky.set_offset(scroll_position)
 
@@ -104,7 +111,9 @@ func turn_player():
 		player_direction = LEFT
 		print("Player turned to left")
 		anim.play("PlayerTurn")
+		map.turn_player()
 	if player_direction == LEFT and speed < 0:
 		player_direction = RIGHT
 		print("Player turned to right")
 		anim.play_backwards("PlayerTurn")
+		map.turn_player()
