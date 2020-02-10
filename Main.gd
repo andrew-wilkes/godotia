@@ -14,7 +14,7 @@ var terrain : Terrain
 var anim : AnimationPlayer
 var player
 var map: Map
-var scroll_position = 0
+var scroll_position
 var speed = 0
 var player_direction = RIGHT
 
@@ -27,6 +27,7 @@ func _ready():
 	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
 	terrain = find_node("Terrain")
 	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
+	scroll_position = terrain.last_point.x / 2
 	# warning-ignore:return_value_discarded
 	get_tree().get_root().connect("size_changed", self, "resize")
 	resize()
@@ -50,6 +51,7 @@ func start_game():
 		var item = Structures.get_item(point, terrain.GRID_SIZE)
 		item.add_to_group("structures")
 		terrain.line.add_child(item)
+	map.add_structures(terrain.GRID_SIZE)
 
 
 func _process(delta):
