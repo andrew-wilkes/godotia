@@ -3,14 +3,22 @@
 [ext_resource path="res://Map.gd" type="Script" id=1]
 
 [node name="Map" type="ColorRect"]
-margin_right = 400.0
-margin_bottom = 100.0
-color = Color( 0.462745, 0.462745, 0.462745, 1 )
+anchor_left = 0.5
+anchor_top = 0.021
+anchor_right = 0.5
+anchor_bottom = 0.042
+margin_left = -202.0
+margin_top = 0.400001
+margin_right = 198.0
+margin_bottom = 67.8
+color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 0, 70 )
+points = PoolVector2Array( 0, 0 )
 width = 1.0
 default_color = Color( 0.00784314, 0.764706, 0, 1 )

@@ -9,11 +9,11 @@ const TOP_LEVEL = 14
 enum { LEFT, RIGHT }
 
 var background : ParallaxBackground
-var sky
+var sky: GSky
 var terrain : Terrain
 var anim : AnimationPlayer
 var player
-var map
+var map: Map
 var scroll_position = 0
 var speed = 0
 var player_direction = RIGHT
@@ -23,10 +23,23 @@ func _ready():
 	sky = find_node("Sky")
 	player = $Player
 	anim = $AnimationPlayer
+	map = $Map
 	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
 	terrain = find_node("Terrain")
 	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
+	# warning-ignore:return_value_discarded
+	get_tree().get_root().connect("size_changed", self, "resize")
+	resize()
+	map.set_points(terrain)
 	start_game()
+
+
+func resize():
+	var size = get_viewport_rect().size
+	terrain.set_base_level(size.y)
+	sky.resize(size)
+	map.resize(terrain, size.y)
+	map.rect_position.x = (size.x - map.rect_size.x) / 2
 
 
 func start_game():

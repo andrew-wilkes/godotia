@@ -14,14 +14,11 @@ var last_point
 
 func _ready():
 	line = $Line2D
-	_set_base_level()
-# warning-ignore:return_value_discarded
-	get_tree().get_root().connect("size_changed", self, "_set_base_level")
 	add_points()
 
 
-func _set_base_level():
-	base_level = get_viewport_rect().size.y - GRID_SIZE
+func set_base_level(y_size):
+	base_level = y_size - GRID_SIZE
 	line.position.y = base_level
 
 

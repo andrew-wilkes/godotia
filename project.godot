@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ColorRect",
+"class": "GSky",
+"language": "GDScript",
+"path": "res://Sky.gd"
+}, {
+"base": "ColorRect",
+"class": "Map",
+"language": "GDScript",
+"path": "res://Map.gd"
+}, {
 "base": "Sprite",
 "class": "Structure",
 "language": "GDScript",
@@ -20,6 +30,8 @@ _global_script_classes=[ {
 "path": "res://Terrain.gd"
 } ]
 _global_script_class_icons={
+"GSky": "",
+"Map": "",
 "Structure": "",
 "Terrain": ""
 }

@@ -1,15 +1,11 @@
 extends ColorRect
 
+class_name GSky
+
 export var scroll_scale = 0.7
 
-func _ready():
-# warning-ignore:return_value_discarded
-	get_tree().get_root().connect("size_changed", self, "_resize")
-	_resize()
 
-
-func _resize():
-	var size = get_viewport_rect().size
+func resize(size):
 	rect_size = size
 	material.set_shader_param("viewport_size", size)
 
