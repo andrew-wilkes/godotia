@@ -7,20 +7,19 @@ const ACCEL = 9.8
 enum StructType { Building, Resource }
 enum states { STATIC, FALLING, WITH_ENEMY, WITH_PLAYER }
 
-export(StructType) var structType = StructType.Building
 export var title: String
 export var description: String
+export(StructType) var structType = StructType.Building
+export(float, 100) var energy = 100
+export(float, EXP, 0, 10000, 10) var population = 0
 
 var body
 var shape
 var velocity = Vector2(0, 0)
-var energy = 100
-var population = 1000
 var state = states.STATIC
 
 func _ready():
 	body = $KinematicBody2D
-	shape = $KinematicBody2D/CollisionShape2D
 
 
 func _physics_process(delta):

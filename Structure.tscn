@@ -9,6 +9,7 @@ extents = Vector2( 8.01961, 7.98416 )
 [node name="Structure" type="Sprite"]
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
+population = 290.0
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 

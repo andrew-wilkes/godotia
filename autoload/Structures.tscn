@@ -23,6 +23,8 @@ texture = ExtResource( 3 )
 centered = false
 script = ExtResource( 2 )
 title = "Apartment Block"
+energy = 0.0
+population = 160.0
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="Apartments"]
 position = Vector2( 8, 8 )
@@ -71,6 +73,7 @@ texture = ExtResource( 5 )
 centered = false
 script = ExtResource( 2 )
 title = "Office Block"
+population = 160.0
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="Office"]
 position = Vector2( 8, 8 )
