@@ -11,9 +11,13 @@ var line
 var base_level
 var flats = []
 var last_point
+var flat: Resource
 
 func _ready():
 	line = $Line2D
+	flat = load("res://Flat.tscn")
+	# Set width of flat collision segment resource
+	flat.instance().get_child(0).shape.set_a(Vector2(-GRID_SIZE, 0))
 	add_points()
 
 
@@ -27,6 +31,9 @@ func _add_point(point: Vector2):
 	# Save points of the flat sections of terrain
 	if last_point and last_point.y == point.y:
 		flats.append(point)
+		var f = flat.instance()
+		f.position = point
+		line.add_child(f)
 	last_point = point
 
 
