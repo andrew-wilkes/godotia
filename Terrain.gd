@@ -26,17 +26,6 @@ func set_base_level(y_size):
 	line.position.y = base_level
 
 
-func _add_point(point: Vector2):
-	line.add_point(point)
-	# Save points of the flat sections of terrain
-	if last_point and last_point.y == point.y:
-		flats.append(point)
-		var f = flat.instance()
-		f.position = point
-		line.add_child(f)
-	last_point = point
-
-
 func add_points():
 	var rng = RandomNumberGenerator.new()
 	rng.set_seed(SEED)
@@ -48,6 +37,17 @@ func add_points():
 		pos.y = clamp(pos.y, -MAX_HEIGHT, 0)
 		_add_point(pos)
 	print("End pos: %d Flats: %d" % [pos.x, flats.size()])
+
+
+func _add_point(point: Vector2):
+	line.add_point(point)
+	# Save points of the flat sections of terrain
+	if last_point and last_point.y == point.y:
+		flats.append(point)
+		var f = flat.instance()
+		f.position = point
+		line.add_child(f)
+	last_point = point
 
 
 func get_points_for_structures(density: float):

@@ -5,6 +5,7 @@ a = Vector2( -16, 0 )
 b = Vector2( 0, 0 )
 
 [node name="Flat" type="StaticBody2D"]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

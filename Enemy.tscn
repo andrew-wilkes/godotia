@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://textures/ufo-16.png" type="Texture" id=1]
+[ext_resource path="res://Enemy.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.69702, 5.11575 )
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 16
+collision_mask = 10
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+[connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Enemy_body_entered"]

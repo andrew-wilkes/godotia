@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Terrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://textures/plane.png" type="Texture" id=3]
-[ext_resource path="res://textures/ufo-16.png" type="Texture" id=4]
-[ext_resource path="res://textures/ufo-32.png" type="Texture" id=5]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://textures/shaders/star-sky.shader" type="Shader" id=6]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sky.gd" type="Script" id=8]
@@ -45,17 +44,11 @@ script = ExtResource( 8 )
 
 [node name="Terrain" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource( 2 )]
 
-[node name="ufo-16" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 572, 116 )
-texture = ExtResource( 4 )
+[node name="Enemy" parent="ParallaxBackground/ParallaxLayer/Terrain" instance=ExtResource( 4 )]
+position = Vector2( 540.549, 281.2 )
 
-[node name="ufo-32" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 764, 264 )
-texture = ExtResource( 5 )
-
-[node name="Player" type="Sprite" parent="."]
-position = Vector2( 432, 279 )
-texture = ExtResource( 3 )
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 213.75, 280.25 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/PlayerTurn = SubResource( 2 )

@@ -77,6 +77,15 @@ ui_down={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Terrain"
+2d_physics/layer_2="Structures"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Player Fire"
+2d_physics/layer_5="Enemy"
+2d_physics/layer_6="Enemy Fire"
+
 [rendering]
 
 environment/default_clear_color=Color( 0, 0, 0, 0 )

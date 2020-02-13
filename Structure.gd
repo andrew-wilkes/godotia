@@ -19,7 +19,7 @@ var velocity = Vector2(0, 0)
 var state = states.STATIC
 
 func _ready():
-	body = $KinematicBody2D
+	body = get_child(0)
 
 
 func _physics_process(delta):

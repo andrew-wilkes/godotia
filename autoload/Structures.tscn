@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 10 )
 
 [node name="Structures" type="Node2D"]
@@ -26,10 +26,12 @@ title = "Apartment Block"
 energy = 0.0
 population = 160.0
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="Apartments"]
+[node name="Apartments" type="KinematicBody2D" parent="Apartments"]
 position = Vector2( 8, 8 )
+collision_layer = 2
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Apartments/KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Apartments/Apartments"]
 visible = false
 shape = SubResource( 1 )
 
@@ -41,10 +43,12 @@ centered = false
 script = ExtResource( 2 )
 title = "Cylinder"
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="Cylinder"]
+[node name="Cylinder" type="KinematicBody2D" parent="Cylinder"]
 position = Vector2( 8, 8 )
+collision_layer = 2
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cylinder/KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cylinder/Cylinder"]
 visible = false
 position = Vector2( -28.6083, 0 )
 shape = SubResource( 1 )
@@ -58,13 +62,15 @@ offset = Vector2( 0, -4 )
 script = ExtResource( 2 )
 title = "Gas Tank"
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="Gas"]
+[node name="Gas" type="KinematicBody2D" parent="Gas"]
 position = Vector2( 8, 8 )
+collision_layer = 2
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gas/KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gas/Gas"]
 visible = false
 position = Vector2( 0, -2 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Office" type="Sprite" parent="."]
 modulate = Color( 0.854902, 0.352941, 0.670588, 1 )
@@ -75,10 +81,12 @@ script = ExtResource( 2 )
 title = "Office Block"
 population = 160.0
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="Office"]
+[node name="Office" type="KinematicBody2D" parent="Office"]
 position = Vector2( 8, 8 )
+collision_layer = 2
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Office/KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Office/Office"]
 visible = false
 position = Vector2( -89.3458, 0 )
 shape = SubResource( 1 )

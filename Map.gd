@@ -10,6 +10,7 @@ var coor_scale : Vector2
 var line: Line2D
 var structures = {}
 var player
+var plane
 
 func _ready():
 	line = $Line2D
@@ -40,6 +41,7 @@ func add_player(p, scroll_position, terrain):
 	player = p.duplicate()
 	position_player(p, scroll_position, terrain)
 	add_child(player)
+	plane = player.get_node("Sprite")
 
 
 func position_player(p, scroll_position: int, terrain):
@@ -54,7 +56,7 @@ func position_player(p, scroll_position: int, terrain):
 
 
 func turn_player():
-	player.flip_h = !player.flip_h
+	plane.flip_h = !plane.flip_h
 
 
 func _process(_delta):
