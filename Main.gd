@@ -1,7 +1,7 @@
 extends Node2D
 
 const THRUST = 500
-const MAX_SPEED = THRUST # Same number re-use, saves editing later maybe?
+const MAX_SPEED = 500
 const TOP_LEVEL = 14
 
 enum { LEFT, RIGHT }
@@ -14,11 +14,13 @@ var player
 var map: Map
 var scroll_position
 var speed = 0
+var enemy_scene = preload("res://Enemy.tscn")
 
 func _ready():
 	background = $ParallaxBackground
 	sky = find_node("Sky")
 	player = $Player
+	globals.player = player
 	player.direction = RIGHT
 	anim = $AnimationPlayer
 	map = $Map
@@ -48,10 +50,14 @@ func start_game():
 	Structures.coors = terrain.get_points_for_structures(Structures.DENSITY)
 	for point in Structures.coors:
 		var item = Structures.get_item(point, terrain.GRID_SIZE)
-		item.add_to_group("structures")
+		globals.structures[item.get_instance_id()] = item
 		terrain.line.add_child(item)
 	map.add_structures()
 	map.add_player(player, scroll_position, terrain)
+	var enemy = enemy_scene.instance()
+	enemy.target = globals.structures.values()[18].position
+	enemy.position = Vector2(3600, -600)
+	terrain.line.add_child(enemy)
 
 
 func _process(delta):

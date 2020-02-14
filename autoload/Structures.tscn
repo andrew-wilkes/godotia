@@ -50,8 +50,6 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cylinder/Cylinder"]
-visible = false
-position = Vector2( -28.6083, 0 )
 shape = SubResource( 1 )
 
 [node name="Gas" type="Sprite" parent="."]
@@ -91,5 +89,4 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Office/Office"]
 visible = false
-position = Vector2( -89.3458, 0 )
 shape = SubResource( 1 )

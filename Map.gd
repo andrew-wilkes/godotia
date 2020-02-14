@@ -29,8 +29,9 @@ func resize(terrain: Terrain, y_size):
 
 
 func add_structures():
-	for s in get_tree().get_nodes_in_group("structures"):
+	for s in globals.structures.values():
 		var node = s.duplicate()
+		node.get_child(0).queue_free()
 		node.scale = ITEM_SCALE
 		node.position *= coor_scale
 		node.position -= Vector2(DX, DX)
@@ -39,6 +40,7 @@ func add_structures():
 
 func add_player(p, scroll_position, terrain): 
 	player = p.duplicate()
+	player.get_child(0).queue_free()
 	position_player(p, scroll_position, terrain)
 	add_child(player)
 	plane = player.get_node("Sprite")

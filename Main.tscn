@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Terrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://textures/shaders/star-sky.shader" type="Shader" id=6]
 [ext_resource path="res://Map.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sky.gd" type="Script" id=8]
@@ -43,9 +42,6 @@ script = ExtResource( 8 )
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Terrain" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource( 2 )]
-
-[node name="Enemy" parent="ParallaxBackground/ParallaxLayer/Terrain" instance=ExtResource( 4 )]
-position = Vector2( 540.549, 281.2 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 213.75, 280.25 )

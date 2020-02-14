@@ -45,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Structures="*res://autoload/Structures.tscn"
+globals="*res://autoload/globals.gd"
 
 [input]
 

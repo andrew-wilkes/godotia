@@ -1,6 +1,6 @@
 extends Node2D
 
-const TEST = true
+const TEST = false
 const DENSITY = 0.3
 
 var coors = []
