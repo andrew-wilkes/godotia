@@ -49,11 +49,15 @@ func start_game():
 	# Add structures to terrain flats
 	Structures.coors = terrain.get_points_for_structures(Structures.DENSITY)
 	for point in Structures.coors:
-		var item = Structures.get_item(point, terrain.GRID_SIZE)
-		globals.add_entity(item, "structures")
-		terrain.line.add_child(item)
+		var structure = Structures.get_item(point, terrain.GRID_SIZE)
+		globals.add_entity(structure, "structures")
+		terrain.line.add_child(structure)
 	map.add_structures()
 	map.add_player(player, scroll_position, terrain)
+	add_enemy_for_testing()
+
+
+func add_enemy_for_testing():
 	var enemy = enemy_scene.instance()
 	enemy.target = globals.structures.values()[18].position
 	enemy.position = Vector2(3600, -400)
