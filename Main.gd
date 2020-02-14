@@ -55,9 +55,11 @@ func start_game():
 	map.add_structures()
 	map.add_player(player, scroll_position, terrain)
 	var enemy = enemy_scene.instance()
-	enemy.target = globals.structures.values()[18].position
-	enemy.position = Vector2(3600, -600)
+	enemy.target = globals.structures.values()[17].position
+	enemy.position = Vector2(3600, -400)
 	terrain.line.add_child(enemy)
+	globals.enemies[enemy.get_instance_id()] = enemy
+	map.add_enemy(enemy)
 
 
 func _process(delta):
@@ -67,6 +69,7 @@ func _process(delta):
 	move_player_sideways(delta)
 	map.position_player(player, scroll_position, terrain)
 	map.update_structures(scroll_position)
+	map.update_enemies(scroll_position)
 
 
 func process_inputs(delta):

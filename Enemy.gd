@@ -9,7 +9,6 @@ var state = MOVING_TO_TARGET
 var target : Vector2
 var structure : Structure
 
-
 func _process(delta):
 	match state:
 		MOVING_TO_TARGET:

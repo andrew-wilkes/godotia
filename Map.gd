@@ -9,12 +9,14 @@ const ITEM_SCALE = Vector2(SCALE, SCALE)
 var coor_scale : Vector2
 var line: Line2D
 var structures
+var enemies
 var player
 var plane
 
 func _ready():
 	line = $Line2D
-	structures = find_node("Structures")
+	structures = $Structures
+	enemies = $Enemies
 
 
 func set_points(terrain: Terrain):
@@ -42,13 +44,29 @@ func update_structures(scroll_position):
 	for s in globals.structures.values():
 		var struct = structures.get_child(i)
 		if s:
-			struct.position = get_struct_position(s, scroll_position)
+			struct.position = get_node_position(s, scroll_position)
 		else:
 			struct.visible = false
 		i += 1
 
 
-func get_struct_position(node, offset):
+func add_enemy(e):
+	var node = e.get_node("Sprite").duplicate()
+	node.name = str(e.get_instance_id())
+	node.scale = ITEM_SCALE
+	enemies.add_child(node)
+
+
+func update_enemies(scroll_position):
+	for e in enemies.get_children():
+		var id = int(e.name)
+		if globals.enemies.keys().has(id):
+			e.position = get_node_position(globals.enemies[id], scroll_position)
+		else:
+			e.queue_free()
+
+
+func get_node_position(node, offset):
 	return node.global_position * coor_scale - Vector2(DX - rect_size.x  + offset * coor_scale.x, DX)
 
 
