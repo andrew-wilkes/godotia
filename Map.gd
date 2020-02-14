@@ -35,19 +35,9 @@ func add_structures():
 	for s in globals.structures.values():
 		var node = s.duplicate()
 		node.get_child(0).queue_free()
+		node.name = str(s.get_instance_id())
 		node.scale = ITEM_SCALE
 		structures.add_child(node)
-
-
-func update_structures(scroll_position):
-	var i = 0
-	for s in globals.structures.values():
-		var struct = structures.get_child(i)
-		if s:
-			struct.position = get_node_position(s, scroll_position)
-		else:
-			struct.visible = false
-		i += 1
 
 
 func add_enemy(e):
@@ -57,13 +47,18 @@ func add_enemy(e):
 	enemies.add_child(node)
 
 
-func update_enemies(scroll_position):
-	for e in enemies.get_children():
+func update_entities(entities, scroll_position):
+	for e in get(entities).get_children():
 		var id = int(e.name)
-		if globals.enemies.keys().has(id):
-			e.position = get_node_position(globals.enemies[id], scroll_position)
+		if globals.get(entities).keys().has(id):
+			e.position = get_node_position(globals.get(entities)[id], scroll_position)
 		else:
 			e.queue_free()
+
+
+func update_all_entities(scroll_position):
+	update_entities("structures", scroll_position)
+	update_entities("enemies", scroll_position)
 
 
 func get_node_position(node, offset):

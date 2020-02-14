@@ -24,9 +24,10 @@ func _process(delta):
 			move(delta)
 			if global_position.y < 0:
 				# Destroy the structure
-				globals.structures[structure.get_instance_id()] = null
+				globals.structures.erase(structure.get_instance_id())
 				structure.queue_free()
 				# Remove this enemy
+				globals.enemies.erase(get_instance_id())
 				queue_free()
 
 
