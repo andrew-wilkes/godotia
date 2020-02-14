@@ -50,7 +50,7 @@ func start_game():
 	Structures.coors = terrain.get_points_for_structures(Structures.DENSITY)
 	for point in Structures.coors:
 		var item = Structures.get_item(point, terrain.GRID_SIZE)
-		globals.structures[item.get_instance_id()] = item
+		globals.add_entity(item, "structures")
 		terrain.line.add_child(item)
 	map.add_structures()
 	map.add_player(player, scroll_position, terrain)
@@ -58,7 +58,7 @@ func start_game():
 	enemy.target = globals.structures.values()[18].position
 	enemy.position = Vector2(3600, -400)
 	terrain.line.add_child(enemy)
-	globals.enemies[enemy.get_instance_id()] = enemy
+	globals.add_entity(enemy, "enemies")
 	map.add_enemy(enemy)
 
 
