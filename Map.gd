@@ -37,19 +37,19 @@ func add_structures():
 		structures.add_child(node)
 
 
-func update_structures():
+func update_structures(scroll_position):
 	var i = 0
 	for s in globals.structures.values():
 		var struct = structures.get_child(i)
 		if s:
-			struct.position = get_struct_position(s)
+			struct.position = get_struct_position(s, scroll_position)
 		else:
 			struct.visible = false
 		i += 1
 
 
-func get_struct_position(node):
-	return node.global_position * coor_scale - Vector2(DX - rect_size.x / 2, DX) 
+func get_struct_position(node, offset):
+	return node.global_position * coor_scale - Vector2(DX - rect_size.x  + offset * coor_scale.x, DX)
 
 
 func add_player(p, scroll_position, terrain): 
