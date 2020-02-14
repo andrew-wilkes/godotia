@@ -8,12 +8,13 @@ const ITEM_SCALE = Vector2(SCALE, SCALE)
 
 var coor_scale : Vector2
 var line: Line2D
-var structures = {}
+var structures
 var player
 var plane
 
 func _ready():
 	line = $Line2D
+	structures = find_node("Structures")
 
 
 func set_points(terrain: Terrain):
@@ -33,9 +34,22 @@ func add_structures():
 		var node = s.duplicate()
 		node.get_child(0).queue_free()
 		node.scale = ITEM_SCALE
-		node.position *= coor_scale
-		node.position -= Vector2(DX, DX)
-		line.add_child(node)
+		structures.add_child(node)
+
+
+func update_structures():
+	var i = 0
+	for s in globals.structures.values():
+		var struct = structures.get_child(i)
+		if s:
+			struct.position = get_struct_position(s)
+		else:
+			struct.visible = false
+		i += 1
+
+
+func get_struct_position(node):
+	return node.global_position * coor_scale - Vector2(DX - rect_size.x / 2, DX) 
 
 
 func add_player(p, scroll_position, terrain): 

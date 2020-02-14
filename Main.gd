@@ -66,6 +66,7 @@ func _process(delta):
 	turn_player()
 	move_player_sideways(delta)
 	map.position_player(player, scroll_position, terrain)
+	map.update_structures()
 
 
 func process_inputs(delta):
