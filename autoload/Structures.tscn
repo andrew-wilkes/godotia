@@ -42,6 +42,7 @@ texture = ExtResource( 4 )
 centered = false
 script = ExtResource( 2 )
 title = "Cylinder"
+structType = 1
 
 [node name="Cylinder" type="KinematicBody2D" parent="Cylinder"]
 position = Vector2( 8, 8 )
@@ -61,6 +62,7 @@ centered = false
 offset = Vector2( 0, -4 )
 script = ExtResource( 2 )
 title = "Gas Tank"
+structType = 1
 
 [node name="Gas" type="KinematicBody2D" parent="Gas"]
 position = Vector2( 8, 8 )
@@ -79,6 +81,7 @@ texture = ExtResource( 5 )
 centered = false
 script = ExtResource( 2 )
 title = "Office Block"
+energy = 0.0
 population = 160.0
 
 [node name="Office" type="KinematicBody2D" parent="Office"]

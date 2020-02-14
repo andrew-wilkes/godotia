@@ -2,8 +2,6 @@ extends Node2D
 
 const THRUST = 500
 const MAX_SPEED = THRUST # Same number re-use, saves editing later maybe?
-const PLAYER_SPEED = Vector2(THRUST, THRUST)
-const PLAYER_MARGIN = 128
 const TOP_LEVEL = 14
 
 enum { LEFT, RIGHT }
@@ -16,12 +14,12 @@ var player
 var map: Map
 var scroll_position
 var speed = 0
-var player_direction = RIGHT
 
 func _ready():
 	background = $ParallaxBackground
 	sky = find_node("Sky")
 	player = $Player
+	player.direction = RIGHT
 	anim = $AnimationPlayer
 	map = $Map
 	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
@@ -45,7 +43,7 @@ func resize():
 
 
 func start_game():
-	player.position.x = PLAYER_MARGIN
+	player.position.x = player.MARGIN
 	# Add structures to terrain flats
 	Structures.coors = terrain.get_points_for_structures(Structures.DENSITY)
 	for point in Structures.coors:
@@ -70,9 +68,9 @@ func process_inputs(delta):
 	if Input.is_action_pressed("ui_right"):
 		speed = clamp(speed - THRUST * delta, -MAX_SPEED, MAX_SPEED)
 	if Input.is_action_pressed("ui_up") and player.position.y > TOP_LEVEL:
-		player.position.y -= PLAYER_SPEED.y * delta
+		player.move(0, -delta)
 	if Input.is_action_pressed("ui_down") and player.position.y < terrain.base_level:
-		player.position.y += PLAYER_SPEED.y * delta
+		player.move(0, delta)
 
 
 func move_background(delta):
@@ -86,34 +84,22 @@ func move_background(delta):
 
 
 func move_player_sideways(delta):
-	var player_speed = PLAYER_SPEED.x * delta
-	if player_direction == LEFT and get_player_distance_to_right() > 0:
-		change_position(player_speed)
-	if player_direction == RIGHT and get_player_distance_to_left() > 0:
-		change_position(-player_speed)
+	if player.direction == LEFT and player.distance_to_right() > 0:
+		change_position(delta)
+	if player.direction == RIGHT and player.distance_to_left() > 0:
+		change_position(-delta)
 
 
 func change_position(delta):
-	player.position.x += delta
-	scroll_position += delta
-
-
-func get_player_distance_to_left():
-	return player.position.x - PLAYER_MARGIN
-
-
-func get_player_distance_to_right():
-	return get_viewport_rect().size.x - PLAYER_MARGIN - player.position.x
+	scroll_position += player.move(delta)
 
 
 func turn_player():
-	if player_direction == RIGHT and speed > 0:
-		player_direction = LEFT
-		print("Player turned to left")
+	if player.direction == RIGHT and speed > 0:
+		player.direction = LEFT
 		anim.play("PlayerTurn")
 		map.turn_player()
-	if player_direction == LEFT and speed < 0:
-		player_direction = RIGHT
-		print("Player turned to right")
+	if player.direction == LEFT and speed < 0:
+		player.direction = RIGHT
 		anim.play_backwards("PlayerTurn")
 		map.turn_player()
