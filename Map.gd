@@ -51,7 +51,9 @@ func update_entities(entities, scroll_position):
 	for e in get(entities).get_children():
 		var id = int(e.name)
 		if globals.get(entities).keys().has(id):
-			e.position = get_node_position(globals.get(entities)[id], scroll_position)
+			var node = globals.get(entities)[id]
+			e.position = get_node_position(node, scroll_position)
+			e.modulate = node.modulate
 		else:
 			e.queue_free()
 
