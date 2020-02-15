@@ -3,7 +3,7 @@ extends Area2D
 enum { MOVING_TO_TARGET, DRAINING_ENERGY, MOVING_TO_PLAYER, LIFTING }
 
 const SPEED = 100
-const RATE_OF_DRAINING_ENERGY = 50
+const RATE_OF_DRAINING_ENERGY = 500
 
 var state = MOVING_TO_TARGET
 var target : Vector2
@@ -42,7 +42,7 @@ func _on_Enemy_area_entered(_area):
 func _on_Enemy_body_entered(body):
 	if body.get_parent() is Structure and state == MOVING_TO_TARGET:
 		structure = body.get_parent()
-		match structure.structType:
+		match structure.struct_type:
 			Structure.StructType.Building:
 				state = LIFTING
 				# Reparent the structure from terrain to enemy

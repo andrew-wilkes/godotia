@@ -23,7 +23,7 @@ texture = ExtResource( 3 )
 centered = false
 script = ExtResource( 2 )
 title = "Apartment Block"
-energy = 0.0
+max_energy = 0.0
 population = 160.0
 
 [node name="Apartments" type="KinematicBody2D" parent="Apartments"]
@@ -36,13 +36,13 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Cylinder" type="Sprite" parent="."]
-modulate = Color( 0.788235, 0.807843, 0.113725, 1 )
 position = Vector2( 36.5305, 9.8446 )
 texture = ExtResource( 4 )
 centered = false
 script = ExtResource( 2 )
 title = "Cylinder"
-structType = 1
+struct_type = 1
+max_energy = 350.0
 
 [node name="Cylinder" type="KinematicBody2D" parent="Cylinder"]
 position = Vector2( 8, 8 )
@@ -50,17 +50,18 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cylinder/Cylinder"]
+visible = false
 shape = SubResource( 1 )
 
 [node name="Gas" type="Sprite" parent="."]
-modulate = Color( 1, 0.309804, 0.309804, 1 )
-position = Vector2( 65.5789, 9.8446 )
+position = Vector2( 65.3585, 9.8446 )
 texture = ExtResource( 6 )
 centered = false
 offset = Vector2( 0, -4 )
 script = ExtResource( 2 )
 title = "Gas Tank"
-structType = 1
+struct_type = 1
+max_energy = 120.0
 
 [node name="Gas" type="KinematicBody2D" parent="Gas"]
 position = Vector2( 8, 8 )
@@ -79,8 +80,8 @@ texture = ExtResource( 5 )
 centered = false
 script = ExtResource( 2 )
 title = "Office Block"
-energy = 0.0
-population = 160.0
+max_energy = 0.0
+population = 350.0
 
 [node name="Office" type="KinematicBody2D" parent="Office"]
 position = Vector2( 8, 8 )
