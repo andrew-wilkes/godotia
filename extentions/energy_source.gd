@@ -30,7 +30,7 @@ func set_max_energy(value):
 	max_energy = value
 
 
-func get_energy(amount):
+func get_energy_all_got(amount):
 	charging = false
 	set_energy(energy - amount)
 	if energy <= 0:

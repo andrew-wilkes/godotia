@@ -14,7 +14,7 @@ func _process(delta):
 		MOVING_TO_TARGET:
 			move(delta)
 		DRAINING_ENERGY:
-			if structure.get_energy(RATE_OF_DRAINING_ENERGY * delta):
+			if structure.get_energy_all_got(RATE_OF_DRAINING_ENERGY * delta):
 				state = MOVING_TO_PLAYER
 		MOVING_TO_PLAYER:
 			target = globals.player.global_position - get_parent().global_position
