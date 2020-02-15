@@ -14,8 +14,7 @@ func _process(delta):
 		MOVING_TO_TARGET:
 			move(delta)
 		DRAINING_ENERGY:
-			structure.energy -= RATE_OF_DRAINING_ENERGY * delta
-			if structure.energy <= 0:
+			if structure.get_energy(RATE_OF_DRAINING_ENERGY * delta):
 				state = MOVING_TO_PLAYER
 		MOVING_TO_PLAYER:
 			target = globals.player.global_position - get_parent().global_position
@@ -42,13 +41,13 @@ func _on_Enemy_area_entered(_area):
 func _on_Enemy_body_entered(body):
 	if body.get_parent() is Structure and state == MOVING_TO_TARGET:
 		structure = body.get_parent()
-		match structure.struct_type:
-			Structure.StructType.Building:
+		match structure.TYPE:
+			"Building":
 				state = LIFTING
 				# Reparent the structure from terrain to enemy
 				call_deferred("reparent_structure")
 				target = Vector2(position.x, -8000)
-			Structure.StructType.Resource:
+			"EnergySource":
 				state = DRAINING_ENERGY
 
 
