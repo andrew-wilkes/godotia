@@ -12,22 +12,22 @@ _global_script_classes=[ {
 "base": "ColorRect",
 "class": "GSky",
 "language": "GDScript",
-"path": "res://Sky.gd"
+"path": "res://scenes/Sky.gd"
 }, {
 "base": "ColorRect",
 "class": "Map",
 "language": "GDScript",
-"path": "res://Map.gd"
+"path": "res://scenes/Map.gd"
 }, {
 "base": "Sprite",
 "class": "Structure",
 "language": "GDScript",
-"path": "res://Structure.gd"
+"path": "res://scenes/Structure.gd"
 }, {
 "base": "Node2D",
 "class": "Terrain",
 "language": "GDScript",
-"path": "res://Terrain.gd"
+"path": "res://scenes/Terrain.gd"
 } ]
 _global_script_class_icons={
 "GSky": "",
@@ -39,13 +39,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Godotia"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Structures="*res://autoload/Structures.tscn"
 globals="*res://autoload/globals.gd"
+Structures="*res://autoload/Structures.tscn"
 
 [input]
 

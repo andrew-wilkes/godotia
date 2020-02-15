@@ -14,7 +14,7 @@ var player
 var map: Map
 var scroll_position
 var speed = 0
-var enemy_scene = preload("res://Enemy.tscn")
+var enemy_scene = preload("res://scenes/Enemy.tscn")
 
 func _ready():
 	background = $ParallaxBackground

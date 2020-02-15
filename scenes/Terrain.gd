@@ -15,7 +15,7 @@ var flat: Resource
 
 func _ready():
 	line = $Line2D
-	flat = load("res://Flat.tscn")
+	flat = load("res://scenes/Flat.tscn")
 	# Set width of flat collision segment resource
 	flat.instance().get_child(0).shape.set_a(Vector2(-GRID_SIZE, 0))
 	add_points()
