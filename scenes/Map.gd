@@ -2,8 +2,8 @@ extends ColorRect
 
 class_name Map
 
-const DX = 2.0
-const SCALE = DX / 8
+const DX = 3.0
+const SCALE = 0.25
 const ITEM_SCALE = Vector2(SCALE, SCALE)
 
 var coor_scale : Vector2
@@ -33,8 +33,7 @@ func resize(terrain: Terrain, y_size):
 
 func add_structures():
 	for s in globals.structures.values():
-		var node = s.duplicate()
-		node.get_child(0).queue_free()
+		var node = s.get_node("Sprite").duplicate()
 		node.name = str(s.get_instance_id())
 		node.scale = ITEM_SCALE
 		structures.add_child(node)

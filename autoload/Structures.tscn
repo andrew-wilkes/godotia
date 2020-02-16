@@ -1,86 +1,72 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://autoload/Structures.gd" type="Script" id=1]
 [ext_resource path="res://extentions/energy_source.gd" type="Script" id=2]
-[ext_resource path="res://textures/structures/aparto.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Structure.tscn" type="PackedScene" id=3]
 [ext_resource path="res://textures/structures/cylinder.png" type="Texture" id=4]
 [ext_resource path="res://textures/structures/office.png" type="Texture" id=5]
 [ext_resource path="res://textures/structures/gas-tank.png" type="Texture" id=6]
 [ext_resource path="res://extentions/building.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
-
-[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 10 )
 
 [node name="Structures" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Apartments" type="Sprite" parent="."]
-modulate = Color( 0.301961, 0.713726, 0.792157, 1 )
-position = Vector2( 7.92224, 9.8446 )
-texture = ExtResource( 3 )
-centered = false
+[node name="Apartments" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0, 0.392157, 1, 1 )
+position = Vector2( 12.5609, 17.5191 )
 script = ExtResource( 7 )
-population = 450.0
 
-[node name="Apartments" type="KinematicBody2D" parent="Apartments"]
+[node name="CollisionShape2D" parent="Apartments" index="0"]
 position = Vector2( 8, 8 )
-collision_layer = 2
-collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Apartments/Apartments"]
-visible = false
-shape = SubResource( 1 )
+[node name="Sprite" parent="Apartments" index="1"]
+centered = false
 
-[node name="Cylinder" type="Sprite" parent="."]
-position = Vector2( 36.5305, 9.8446 )
+[node name="Office" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0, 0.772549, 0.717647, 1 )
+position = Vector2( 34.4928, 17.6448 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" parent="Office" index="0"]
+position = Vector2( 8, 8 )
+
+[node name="Sprite" parent="Office" index="1"]
+position = Vector2( -7.81354, -8.1798 )
+texture = ExtResource( 5 )
+centered = false
+offset = Vector2( 8, 8 )
+
+[node name="Cylinder" parent="." instance=ExtResource( 3 )]
+position = Vector2( 57.2952, 17.5191 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="Cylinder" index="0"]
+position = Vector2( 8.12209, 8 )
+
+[node name="Sprite" parent="Cylinder" index="1"]
 texture = ExtResource( 4 )
 centered = false
+
+[node name="Gas" parent="." instance=ExtResource( 3 )]
+position = Vector2( 79.8827, 17.5191 )
 script = ExtResource( 2 )
-max_energy = 150.0
 
-[node name="Cylinder" type="KinematicBody2D" parent="Cylinder"]
-position = Vector2( 8, 8 )
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cylinder/Cylinder"]
-visible = false
+[node name="CollisionShape2D" parent="Gas" index="0"]
+position = Vector2( 8, 6 )
 shape = SubResource( 1 )
 
-[node name="Gas" type="Sprite" parent="."]
-position = Vector2( 65.3585, 9.8446 )
+[node name="Sprite" parent="Gas" index="1"]
 texture = ExtResource( 6 )
 centered = false
 offset = Vector2( 0, -4 )
-script = ExtResource( 2 )
-max_energy = 210.0
 
-[node name="Gas" type="KinematicBody2D" parent="Gas"]
-position = Vector2( 8, 8 )
-collision_layer = 2
-collision_mask = 0
+[editable path="Apartments"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gas/Gas"]
-visible = false
-position = Vector2( 0, -2 )
-shape = SubResource( 2 )
+[editable path="Office"]
 
-[node name="Office" type="Sprite" parent="."]
-modulate = Color( 0.854902, 0.352941, 0.670588, 1 )
-position = Vector2( 97.268, 9.8446 )
-texture = ExtResource( 5 )
-centered = false
-script = ExtResource( 7 )
-population = 270.0
+[editable path="Cylinder"]
 
-[node name="Office" type="KinematicBody2D" parent="Office"]
-position = Vector2( 8, 8 )
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Office/Office"]
-visible = false
-shape = SubResource( 1 )
+[editable path="Gas"]

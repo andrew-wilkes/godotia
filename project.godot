@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/Map.gd"
 }, {
-"base": "Sprite",
+"base": "KinematicBody2D",
 "class": "Structure",
 "language": "GDScript",
 "path": "res://scenes/Structure.gd"
@@ -32,7 +32,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "GSky": "",
 "Map": "",
-"Structure": "",
+"Structure": "res://textures/structures/aparto.png",
 "Terrain": ""
 }
 

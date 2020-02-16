@@ -6,7 +6,7 @@ const DENSITY = 0.3
 var coors = []
 
 func generate():
-	return get_child(randi() % get_child_count()).duplicate() as Structure
+	return get_child(randi() % get_child_count()).duplicate()
 
 
 func _ready():

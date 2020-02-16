@@ -10,7 +10,6 @@ var energy  setget set_energy
 var charging = true
 
 func _ready():
-	body = get_child(0)
 	set_energy(max_energy)
 
 
@@ -21,8 +20,8 @@ func _process(delta):
 
 func set_energy(value):
 	energy = clamp(value, 0, max_energy)
-	# Change the h value from 0.3 (Green) down to 0 (Red)
-	modulate = Color().from_hsv(energy / max_energy * 0.3, 1, 1)
+	# Change the h value from 0.25 (Greenish) down to 0 (Red)
+	modulate = Color().from_hsv(energy / max_energy * 0.25, 1, 1)
 
 
 func set_max_energy(value):

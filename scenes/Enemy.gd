@@ -39,8 +39,8 @@ func _on_Enemy_area_entered(_area):
 
 
 func _on_Enemy_body_entered(body):
-	if body.get_parent() is Structure and state == MOVING_TO_TARGET:
-		structure = body.get_parent()
+	if body is Structure and state == MOVING_TO_TARGET:
+		structure = body
 		match structure.TYPE:
 			"Building":
 				state = LIFTING
