@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Structure.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Structure.gd" type="Script" id=1]
 [ext_resource path="res://textures/structures/aparto.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -9,7 +9,6 @@ extents = Vector2( 8.01961, 7.98416 )
 [node name="Structure" type="Sprite"]
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
-population = 290.0
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 collision_layer = 2

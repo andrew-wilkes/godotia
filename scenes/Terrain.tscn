@@ -2,7 +2,6 @@
 
 [ext_resource path="res://scenes/Terrain.gd" type="Script" id=1]
 
-
 [node name="Terrain" type="Node2D"]
 script = ExtResource( 1 )
 

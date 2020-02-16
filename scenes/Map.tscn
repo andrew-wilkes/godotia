@@ -2,7 +2,6 @@
 
 [ext_resource path="res://scenes/Map.gd" type="Script" id=1]
 
-
 [node name="Map" type="ColorRect"]
 anchor_left = 0.5
 anchor_top = 0.021

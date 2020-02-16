@@ -8,8 +8,6 @@
 [ext_resource path="res://textures/structures/gas-tank.png" type="Texture" id=6]
 [ext_resource path="res://extentions/building.gd" type="Script" id=7]
 
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 

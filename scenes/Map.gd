@@ -88,7 +88,3 @@ func position_player(p, scroll_position: int, terrain):
 
 func turn_player():
 	plane.flip_h = !plane.flip_h
-
-
-func _process(_delta):
-	pass

@@ -60,7 +60,7 @@ func start_game():
 func add_enemy_for_testing():
 	var enemy = enemy_scene.instance()
 	enemy.target = globals.structures.values()[17].position
-	enemy.position = Vector2(3200, -200)
+	enemy.position = Vector2(3600, -400)
 	terrain.line.add_child(enemy)
 	globals.add_entity(enemy, "enemies")
 	map.add_enemy(enemy)
