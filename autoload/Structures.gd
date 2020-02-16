@@ -17,7 +17,7 @@ func _ready():
 		visible = false
 
 
-func get_item(point: Vector2, grid_size: float):
+func get_item(point: Vector2):
 	var item = generate()
-	item.position = point - Vector2(grid_size, grid_size)
+	item.position = point
 	return item

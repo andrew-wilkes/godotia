@@ -9,7 +9,9 @@ extents = Vector2( 8, 8 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -8, -8 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -8, -8 )
 texture = ExtResource( 2 )

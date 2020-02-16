@@ -2,7 +2,6 @@ extends ColorRect
 
 class_name Map
 
-const DX = 3.0
 const SCALE = 0.25
 const ITEM_SCALE = Vector2(SCALE, SCALE)
 
@@ -32,6 +31,7 @@ func resize(terrain: Terrain, y_size):
 
 
 func add_structures():
+	# Don't care about the position here
 	for s in globals.structures.values():
 		var node = s.get_node("Sprite").duplicate()
 		node.name = str(s.get_instance_id())
@@ -63,7 +63,7 @@ func update_all_entities(scroll_position):
 
 
 func get_node_position(node, offset):
-	return node.global_position * coor_scale - Vector2(DX - rect_size.x  + offset * coor_scale.x, DX)
+	return node.global_position * coor_scale + Vector2(rect_size.x - offset * coor_scale.x, 0)
 
 
 func add_player(p, scroll_position, terrain): 
@@ -76,7 +76,7 @@ func add_player(p, scroll_position, terrain):
 
 func position_player(p, scroll_position: int, terrain):
 	var max_x = terrain.last_point.x
-	player.scale = ITEM_SCALE
+	player.scale = ITEM_SCALE * 0.5
 	var x = max_x - scroll_position + p.position.x
 	if x > max_x:
 		x = x - max_x
