@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/Enemy.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.69702, 5.11575 )
+extents = Vector2( 8.47765, 5.02196 )
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 16

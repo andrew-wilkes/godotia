@@ -15,6 +15,7 @@ var map: Map
 var scroll_position
 var speed = 0
 var enemy_scene = preload("res://scenes/Enemy.tscn")
+var missile_scene = preload("res://scenes/Missile.tscn")
 
 func _ready():
 	background = $ParallaxBackground
@@ -84,6 +85,14 @@ func process_inputs(delta):
 		player.move(0, -delta)
 	if Input.is_action_pressed("ui_down") and player.position.y < terrain.base_level:
 		player.move(0, delta)
+	if Input.is_action_just_pressed("ui_accept"):
+		fire_missile()
+
+
+func fire_missile():
+	var m = missile_scene.instance()
+	terrain.add_child(m)
+	m.start(terrain.last_point.x - scroll_position, speed)
 
 
 func move_background(delta):
