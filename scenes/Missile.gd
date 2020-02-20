@@ -12,14 +12,6 @@ func _process(delta):
 	position.x = x
 
 
-func _on_Lifetime_timeout():
-	destroy()
-
-
-func destroy():
-	queue_free()
-
-
 func start(terrain, offset, player_speed):
 	# Make missile speed relative to plane speed
 	speed += abs(player_speed)
@@ -31,3 +23,15 @@ func start(terrain, offset, player_speed):
 	else:
 		direction = -1
 		$Sprite.flip_h = true
+
+
+func _on_Missile_area_entered(_area):
+	destroy()
+
+
+func _on_Lifetime_timeout():
+	destroy()
+
+
+func destroy():
+	queue_free()

@@ -35,7 +35,12 @@ func move(delta):
 
 
 func _on_Enemy_area_entered(_area):
-	pass # Replace with function body.
+	globals.remove_entity(self, "enemies")
+	destroy()
+
+
+func destroy():
+	queue_free()
 
 
 func _on_Enemy_body_entered(body):
