@@ -8,6 +8,13 @@ const RATE_OF_DRAINING_ENERGY = 200
 var state = MOVING_TO_TARGET
 var target : Vector2
 var structure : Structure
+var shot_scene = preload("res://scenes/Shot.tscn")
+var in_range : bool
+var shot_range_squared : float
+
+func _init():
+	shot_range_squared = pow(rand_range(globals.shots.range1, globals.shots.range2), 2)
+
 
 func _process(delta):
 	match state:
@@ -19,6 +26,12 @@ func _process(delta):
 		MOVING_TO_PLAYER:
 			target = globals.player.global_position - get_parent().global_position
 			move(delta)
+			in_range = shot_range_squared >= (target - position).length_squared()
+			if in_range:
+				modulate = Color(1, 0, 0)
+				fire()
+			else:
+				modulate = Color(1, 1, 1)
 		LIFTING:
 			move(delta)
 			if global_position.y < 0:
@@ -60,3 +73,12 @@ func reparent_structure():
 	structure.get_parent().remove_child(structure)
 	structure.position = Vector2(-8, 8)
 	add_child(structure)
+
+
+func fire():
+	if $ShotTimer.is_stopped():
+		var shot = shot_scene.instance()
+		shot.position = position
+		shot.direction = (target - position).normalized()
+		get_parent().add_child(shot)
+		$ShotTimer.start(rand_range(globals.shots.fire_delay1, globals.shots.fire_delay2))
