@@ -38,6 +38,9 @@ material = SubResource( 1 )
 margin_right = 1024.0
 margin_bottom = 599.0
 script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 

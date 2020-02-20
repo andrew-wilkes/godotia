@@ -28,6 +28,7 @@ func _ready():
 	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
 	terrain = find_node("Terrain")
 	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
+	globals.terrain = terrain
 	# Start in the middle of the map
 	scroll_position = terrain.last_point.x / 2
 	# warning-ignore:return_value_discarded
@@ -92,7 +93,7 @@ func process_inputs(delta):
 func fire_missile():
 	var m = missile_scene.instance()
 	terrain.add_child(m)
-	m.start(terrain.last_point.x - scroll_position, speed)
+	m.start(terrain, scroll_position, speed)
 
 
 func move_background(delta):

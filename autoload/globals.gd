@@ -1,6 +1,7 @@
 extends Node
 
 var player
+var terrain
 var structures = {}
 var enemies = {}
 

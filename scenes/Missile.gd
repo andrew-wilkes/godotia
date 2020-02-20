@@ -4,7 +4,12 @@ var speed = 500
 var direction = 1
 
 func _process(delta):
-	position.x += speed * delta * direction
+	var x = position.x + speed * delta * direction
+	if x > globals.terrain.last_point.x:
+		x -= globals.terrain.last_point.x
+	if x < 0:
+		x += globals.terrain.last_point.x
+	position.x = x
 
 
 func _on_Lifetime_timeout():
@@ -15,13 +20,14 @@ func destroy():
 	queue_free()
 
 
-func start(offset, p_speed):
-	speed += abs(p_speed)
-	position = globals.player.position + Vector2(offset, 10)
+func start(terrain, offset, player_speed):
+	# Make missile speed relative to plane speed
+	speed += abs(player_speed)
+	# Position it under the plane's wing
+	position = globals.player.position + Vector2(terrain.last_point.x - offset, 10)
 	if globals.player.direction:
 		direction = 1
 		$Sprite.flip_h = false
 	else:
 		direction = -1
 		$Sprite.flip_h = true
-	$Lifetime.start()
