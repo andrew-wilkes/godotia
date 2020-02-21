@@ -3,7 +3,6 @@ extends Node2D
 const THRUST = 500
 const MAX_SPEED = 500
 const TOP_LEVEL = 14
-const WRAPF_VALUE = 9999999
 
 enum { LEFT, RIGHT }
 
@@ -17,7 +16,7 @@ var scroll_position
 var speed = 0
 var enemy_scene = preload("res://scenes/Enemy.tscn")
 var missile_scene = preload("res://scenes/Missile.tscn")
-var sky_pos : float = 0
+var sky_pos = 0
 
 func _ready():
 	background = $ParallaxBackground
@@ -101,7 +100,7 @@ func fire_missile():
 func move_background(delta):
 	scroll_position = wrapf(scroll_position + delta, 0, terrain.last_point.x)
 	background.scroll_offset.x = scroll_position
-	sky_pos = wrapf(sky_pos + delta, -WRAPF_VALUE, WRAPF_VALUE)
+	sky_pos += delta
 	sky.set_offset(sky_pos)
 
 
