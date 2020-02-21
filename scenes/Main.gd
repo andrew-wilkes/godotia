@@ -72,7 +72,7 @@ func add_enemy_for_testing():
 
 func _process(delta):
 	process_inputs(delta)
-	move_background(delta)
+	move_background(speed * delta)
 	turn_player()
 	move_player_sideways(delta)
 	map.position_player(player, scroll_position, terrain)
@@ -99,13 +99,9 @@ func fire_missile():
 
 
 func move_background(delta):
-	scroll_position += speed * delta
-	sky_pos = wrapf(sky_pos + speed * delta, -WRAPF_VALUE, WRAPF_VALUE)
-	if scroll_position > terrain.last_point.x:
-		scroll_position -= terrain.last_point.x
-	if scroll_position < 0:
-		scroll_position += terrain.last_point.x
+	scroll_position = wrapf(scroll_position + delta, 0, terrain.last_point.x)
 	background.scroll_offset.x = scroll_position
+	sky_pos = wrapf(sky_pos + delta, -WRAPF_VALUE, WRAPF_VALUE)
 	sky.set_offset(sky_pos)
 
 
