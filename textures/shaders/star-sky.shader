@@ -141,7 +141,7 @@ vec3 fractalNebula(in vec2 coord, vec3 color, float transparency)
 
 vec4 mainImage(vec2 fragCoord)
 {
-	float resolution = max(viewport_size.y, viewport_size.y);
+	float resolution = max(viewport_size.x, viewport_size.y);
 	
 	vec2 coord = fragCoord.xy / resolution;
 	
@@ -159,6 +159,7 @@ vec4 mainImage(vec2 fragCoord)
 void vertex() {
 	vtx = VERTEX + vec2(x_offset, 0.);
 }
+
 void fragment() {
 	COLOR = mainImage(vtx);
 }

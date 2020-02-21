@@ -11,4 +11,4 @@ func resize(size):
 
 
 func set_offset(offset):
-		material.set_shader_param("x_offset", -offset * scroll_scale)
+	material.set_shader_param("x_offset", -offset * scroll_scale)
