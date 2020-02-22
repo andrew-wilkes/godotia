@@ -156,10 +156,12 @@ vec4 mainImage(vec2 fragCoord)
 	return vec4(result, 1.);
 }
 
-void vertex() {
+void vertex()
+{
 	vtx = VERTEX + vec2(x_offset, 0.);
 }
 
-void fragment() {
+void fragment()
+{
 	COLOR = mainImage(vtx);
 }

@@ -65,10 +65,7 @@ func update_all_entities(scroll_position):
 
 
 func get_node_position(node, offset):
-	var pos
-	if node.global_position:
-		pos = node.global_position * coor_scale + Vector2(rect_size.x - offset * coor_scale.x, 0)
-	return pos
+	return node.global_position * coor_scale + Vector2(rect_size.x - offset * coor_scale.x, 0)
 
 
 func add_player(p, scroll_position, terrain): 
@@ -80,13 +77,9 @@ func add_player(p, scroll_position, terrain):
 
 
 func position_player(p, scroll_position: int, terrain):
-	var max_x = terrain.last_point.x
 	player.scale = ITEM_SCALE * 0.5
-	var x = max_x - scroll_position + p.position.x
-	if x > max_x:
-		x = x - max_x
-	if x < 0:
-		x = max_x - x
+	var max_x = terrain.last_point.x
+	var x = wrapf(max_x - scroll_position + p.position.x, 0, max_x)
 	player.position = Vector2(x, p.position.y) * coor_scale
 
 
