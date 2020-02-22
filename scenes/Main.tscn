@@ -59,3 +59,7 @@ margin_left = 327.0
 margin_top = 18.0
 margin_right = 727.0
 margin_bottom = 78.0
+
+[node name="Spawner" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="Spawner" to="." method="_on_Spawner_timeout"]

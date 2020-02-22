@@ -23,6 +23,7 @@ func _process(delta):
 		DRAINING_ENERGY:
 			if structure.get_energy_all_got(RATE_OF_DRAINING_ENERGY * delta):
 				state = MOVING_TO_PLAYER
+				structure.targeted = false
 		MOVING_TO_PLAYER:
 			target = globals.player.global_position - get_parent().global_position
 			move(delta)
@@ -48,12 +49,15 @@ func move(delta):
 
 
 func _on_Enemy_area_entered(_area):
+	if $Hook.get_child_count():
+		structure.state = structure.states.FALLING
+		call_deferred("reparent_structure", globals.terrain, self.position)
 	globals.remove_entity(self, "enemies")
 	destroy()
 
 
 func destroy():
-	queue_free()
+	pass #queue_free()
 
 
 func _on_Enemy_body_entered(body):
@@ -63,16 +67,16 @@ func _on_Enemy_body_entered(body):
 			"Building":
 				state = LIFTING
 				# Reparent the structure from terrain to enemy
-				call_deferred("reparent_structure")
+				call_deferred("reparent_structure", $Hook, Vector2(-8, 8))
 				target = Vector2(position.x, -8000)
 			"EnergySource":
 				state = DRAINING_ENERGY
 
 
-func reparent_structure():
+func reparent_structure(new_parent: Node, pos: Vector2):
 	structure.get_parent().remove_child(structure)
-	structure.position = Vector2(-8, 8)
-	add_child(structure)
+	structure.position = pos
+	new_parent.add_child(structure)
 
 
 func fire():

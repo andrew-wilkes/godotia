@@ -17,6 +17,7 @@ var speed = 0
 var enemy_scene = preload("res://scenes/Enemy.tscn")
 var missile_scene = preload("res://scenes/Missile.tscn")
 var sky_pos = 0
+var enemies_to_spawn = 0
 
 func _ready():
 	background = $ParallaxBackground
@@ -57,13 +58,39 @@ func start_game():
 		terrain.line.add_child(structure)
 	map.add_structures()
 	map.add_player(player, scroll_position, terrain)
-	add_enemy_for_testing()
+	enemies_to_spawn = 10
+	spawn_enemy()
 
 
-func add_enemy_for_testing():
+func spawn_enemy():
+	if enemies_to_spawn:
+		var target = pick_target()
+		if target:
+			add_enemy(target)
+	$Spawner.start(rand_range(1, 5))
+
+
+func _on_Spawner_timeout():
+	spawn_enemy()
+
+
+func pick_target():
+	var targets = []
+	# Get all untargeted structures
+	for i in globals.structures.keys():
+		if !globals.structures[i].targeted:
+			targets.append(i)
+	var pick = false
+	if targets.size():
+		pick = globals.structures[targets[randi() % targets.size()]]
+	pick.targeted = true
+	return pick
+
+
+func add_enemy(target):
 	var enemy = enemy_scene.instance()
-	enemy.target = globals.structures.values()[18].position
-	enemy.position = Vector2(3200, -200)
+	enemy.target = target.position
+	enemy.position = Vector2(target.position.x + rand_range(-100, 100), -32)
 	terrain.line.add_child(enemy)
 	globals.add_entity(enemy, "enemies")
 	map.add_enemy(enemy)

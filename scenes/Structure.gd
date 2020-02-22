@@ -11,6 +11,7 @@ export var description: String
 
 var velocity = Vector2(0, 0)
 var state = states.STATIC
+var targeted = false
 
 
 func _physics_process(delta):
