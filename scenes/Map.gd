@@ -51,8 +51,9 @@ func update_entities(entities, scroll_position):
 		var id = int(e.name)
 		if globals.get(entities).keys().has(id):
 			var node = globals.get(entities)[id]
-			e.position = get_node_position(node, scroll_position)
-			e.modulate = node.modulate
+			if node:
+				e.position = get_node_position(node, scroll_position)
+				e.modulate = node.modulate
 		else:
 			e.queue_free()
 
@@ -63,7 +64,10 @@ func update_all_entities(scroll_position):
 
 
 func get_node_position(node, offset):
-	return node.global_position * coor_scale + Vector2(rect_size.x - offset * coor_scale.x, 0)
+	var pos
+	if node.global_position:
+		pos = node.global_position * coor_scale + Vector2(rect_size.x - offset * coor_scale.x, 0)
+	return pos
 
 
 func add_player(p, scroll_position, terrain): 

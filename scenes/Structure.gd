@@ -4,7 +4,7 @@ class_name Structure, "res://textures/structures/aparto.png"
 
 const ACCEL = 9.8
 
-enum states { STATIC, FALLING, WITH_ENEMY, WITH_PLAYER }
+enum states { STATIC, FALLING }
 
 export var title: String
 export var description: String

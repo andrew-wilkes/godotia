@@ -18,6 +18,7 @@ var enemy_scene = preload("res://scenes/Enemy.tscn")
 var missile_scene = preload("res://scenes/Missile.tscn")
 var sky_pos = 0
 var enemies_to_spawn = 0
+var size
 
 func _ready():
 	background = $ParallaxBackground
@@ -30,7 +31,6 @@ func _ready():
 	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
 	terrain = find_node("Terrain")
 	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
-	globals.terrain = terrain
 	# Start in the middle of the map
 	scroll_position = terrain.last_point.x / 2
 	# warning-ignore:return_value_discarded
@@ -41,7 +41,7 @@ func _ready():
 
 
 func resize():
-	var size = get_viewport_rect().size
+	size = get_viewport_rect().size
 	terrain.set_base_level(size.y)
 	sky.resize(size)
 	map.resize(terrain, size.y)
@@ -67,7 +67,7 @@ func spawn_enemy():
 		var target = pick_target()
 		if target:
 			add_enemy(target)
-	$Spawner.start(rand_range(1, 5))
+	#$Spawner.start(rand_range(1, 5))
 
 
 func _on_Spawner_timeout():
@@ -82,7 +82,7 @@ func pick_target():
 			targets.append(i)
 	var pick = false
 	if targets.size():
-		pick = globals.structures[targets[randi() % targets.size()]]
+		pick = globals.structures[targets[17]] #randi() % targets.size()]]
 	pick.targeted = true
 	return pick
 
@@ -90,7 +90,7 @@ func pick_target():
 func add_enemy(target):
 	var enemy = enemy_scene.instance()
 	enemy.target = target.position
-	enemy.position = Vector2(target.position.x + rand_range(-100, 100), -32)
+	enemy.position = Vector2(target.position.x + rand_range(-100, 100), -size.y / 3)
 	terrain.line.add_child(enemy)
 	globals.add_entity(enemy, "enemies")
 	map.add_enemy(enemy)
@@ -116,12 +116,17 @@ func process_inputs(delta):
 		player.move(0, delta)
 	if Input.is_action_just_pressed("ui_accept"):
 		fire_missile()
+	if Input.is_action_just_pressed("ui_end"):
+		if globals.temp:
+			print(globals.temp.get_parent().name)
+		else:
+			print("null")
 
 
 func fire_missile():
 	var m = missile_scene.instance()
 	terrain.add_child(m)
-	m.start(terrain, scroll_position, speed)
+	m.start(terrain, scroll_position, speed, terrain.last_point.x)
 
 
 func move_background(delta):

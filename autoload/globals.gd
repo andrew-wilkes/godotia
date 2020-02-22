@@ -1,7 +1,6 @@
 extends Node
 
 var player
-var terrain
 var structures = {}
 var enemies = {}
 var shots = {
@@ -17,3 +16,4 @@ func add_entity(entity, target):
 
 func remove_entity(entity, target):
 	get(target).erase(entity.get_instance_id())
+	entity.visible = false

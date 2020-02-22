@@ -2,17 +2,14 @@ extends Area2D
 
 var speed = 500
 var direction = 1
+var max_x
 
 func _process(delta):
-	var x = position.x + speed * delta * direction
-	if x > globals.terrain.last_point.x:
-		x -= globals.terrain.last_point.x
-	if x < 0:
-		x += globals.terrain.last_point.x
-	position.x = x
+	position.x = wrapf(position.x + speed * delta * direction, 0, max_x)
 
 
-func start(terrain, offset, player_speed):
+func start(terrain, offset, player_speed, _max_x):
+	max_x = _max_x
 	# Make missile speed relative to plane speed
 	speed += abs(player_speed)
 	# Position it under the plane's wing
