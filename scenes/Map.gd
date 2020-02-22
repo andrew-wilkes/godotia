@@ -49,13 +49,14 @@ func add_enemy(e):
 func update_entities(entities, scroll_position):
 	for e in get(entities).get_children():
 		var id = int(e.name)
-		if globals.get(entities).keys().has(id):
+		if globals.get(entities)[id].visible:
 			var node = globals.get(entities)[id]
-			if node:
-				e.position = get_node_position(node, scroll_position)
-				e.modulate = node.modulate
+			e.position = get_node_position(node, scroll_position)
+			e.modulate = node.modulate
 		else:
 			e.queue_free()
+			globals.get(entities)[id].queue_free()
+			globals.get(entities).erase(id)
 
 
 func update_all_entities(scroll_position):

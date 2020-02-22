@@ -58,7 +58,7 @@ func _on_Enemy_area_entered(area):
 
 
 func destroy():
-	globals.remove_entity(self, "enemies")
+	visible = false
 
 
 func _on_Enemy_body_entered(body):
@@ -96,5 +96,5 @@ func got_hit():
 
 
 func got_building():
-	globals.structures.erase(sid)
+	globals.structures[sid].visible = false
 	print("got_building")
