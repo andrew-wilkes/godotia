@@ -11,10 +11,12 @@ func _on_Player_body_entered(body):
 		# Catch falling structure
 		sid = body.get_instance_id()
 		body.state = body.states.STATIC
+		globals.output("Player got sid: %s" % sid)
 		globals.call_deferred("reparent_structure", self, self, Vector2(4, 16), sid)
 	elif sid and body.collision_mask == 0 and body.get_child_count() < 2:
 		# Allow re-targeting of structure
 		globals.structures[sid].targeted = false
+		globals.output("Player rep sid: %s" % sid)
 		# Place structure on empty terrain flat
 		globals.call_deferred("reparent_structure", self, body.get_parent(), body.position)
 

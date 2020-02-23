@@ -21,12 +21,12 @@ func _physics_process(delta):
 		var collision = move_and_collide(velocity * delta)
 		if collision:
 			if velocity.y >= CRASH_SPEED:
-				print("Structure crash speed: ", velocity.y)
+				globals.output("Structure crash speed: %s" % velocity.y)
 				destroy()
 			velocity.y = 0
 			state = states.STATIC
-		if position.y > 0:
-			print("Structure hit ground")
+		if position.y > 0 and velocity.y > 1:
+			globals.output("Structure hit ground")
 			destroy()
 
 

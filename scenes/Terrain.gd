@@ -37,7 +37,7 @@ func add_collision_surfaces():
 		pos.y += (rng.randi() % 3 - 1) * GRID_SIZE # -1, 0, 1 * GRID_SIZE
 		pos.y = clamp(pos.y, -MAX_HEIGHT, 0)
 		add_collision_surface(pos)
-	print("End pos: %d Flats: %d" % [pos.x, flats.size()])
+	globals.output("End pos: %d Flats: %d" % [pos.x, flats.size()])
 
 
 func add_collision_surface(point: Vector2):

@@ -42,6 +42,7 @@ func _process(delta):
 				if sid:
 					got_building()
 					sid = 0
+				state = DEAD
 				destroy()
 
 
@@ -59,8 +60,6 @@ func _on_Enemy_area_entered(_area):
 			# Was leeching off an energy source
 			globals.structures[sid].targeted = false
 			globals.structures[sid].charging = true
-		sid = 0
-	state = DEAD
 	got_hit()
 	destroy()
 
@@ -82,14 +81,6 @@ func _on_Enemy_body_entered(body):
 				state = DRAINING_ENERGY
 
 
-func reparent_structure(new_parent: Node, pos: Vector2, _sid = 0):
-	var s = globals.structures[sid]
-	s.get_parent().remove_child(s)
-	s.position = pos
-	new_parent.add_child(s)
-	sid = _sid
-
-
 func fire():
 	if $ShotTimer.is_stopped():
 		var shot = shot_scene.instance()
@@ -105,4 +96,4 @@ func got_hit():
 
 func got_building():
 	globals.structures[sid].visible = false
-	print("got_building")
+	globals.output("Got_building")

@@ -4,7 +4,7 @@ const THRUST = 500
 const MAX_SPEED = 500
 const TOP_LEVEL = 14
 const TEST_STRUCT = false
-const TEST_ENEMY = false
+const TEST_ENEMY = true
 
 enum { LEFT, RIGHT }
 
@@ -51,7 +51,6 @@ func resize():
 	map.resize(terrain, size.y)
 	map.rect_position.x = (size.x - map.rect_size.x) / 2
 	stats.rect_size.x = size.x
-	MarginContainer
 
 
 func start_game():
@@ -73,7 +72,7 @@ func start_game():
 func add_test_structure():
 	# Test falling
 	var structure = Structures.generate()
-	structure.position = Vector2(scroll_position + 16, -80)
+	structure.position = Vector2(scroll_position + 50, -80)
 	structure.state = 1
 	terrain.line.add_child(structure)
 
@@ -101,7 +100,7 @@ func pick_target():
 	if targets.size():
 		var i = randi() % targets.size()
 		if TEST_ENEMY:
-			i = 18 # Manually choose a target
+			i = 17 # Manually choose a target
 		pick = globals.structures[targets[i]]
 	pick.targeted = true
 	return pick

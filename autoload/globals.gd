@@ -1,5 +1,7 @@
 extends Node
 
+const OUTPUT = true
+
 var player
 var structures = {}
 var enemies = {}
@@ -15,9 +17,15 @@ func add_entity(entity, target):
 
 
 func reparent_structure(caller: Node, dest: Node, pos: Vector2, _sid = 0):
+	output("Rep sid: %s" % caller.sid)
 	if caller.sid:
 		var s = structures[caller.sid]
 		s.get_parent().remove_child(s)
 		s.position = pos
 		dest.add_child(s)
 		caller.sid = _sid
+
+
+func output(msg):
+	if OUTPUT:
+		print(msg)
