@@ -7,10 +7,14 @@ var direction : int
 var sid = 0
 
 func _on_Player_body_entered(body):
-	if body is Structure and body.state == body.states.FALLING:
+	if !sid and body is Structure and body.state == body.states.FALLING:
+		# Catch falling structure
 		sid = body.get_instance_id()
 		body.state = body.states.STATIC
 		globals.call_deferred("reparent_structure", self, self, Vector2(4, 16), sid)
+	elif sid and body.collision_mask == 0 and body.get_child_count() < 2:
+		# Place structure on empty terrain flat
+		globals.call_deferred("reparent_structure", self, body.get_parent(), body.position)
 
 
 func _on_Player_area_entered(_area):

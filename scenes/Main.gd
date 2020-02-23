@@ -51,11 +51,12 @@ func resize():
 func start_game():
 	player.position.x = player.MARGIN
 	# Add structures to terrain flats
-	Structures.coors = terrain.get_points_for_structures(Structures.DENSITY)
-	for point in Structures.coors:
-		var structure = Structures.get_item(point)
+	var nodes = terrain.get_nodes_for_structures(Structures.DENSITY)
+	for node in nodes:
+		var structure = Structures.generate()
 		globals.add_entity(structure, "structures")
-		terrain.line.add_child(structure)
+		node.add_child(structure)
+		pass
 	map.add_structures()
 	map.add_player(player, scroll_position, terrain)
 	enemies_to_spawn = 10
@@ -89,8 +90,8 @@ func pick_target():
 
 func add_enemy(target):
 	var enemy = enemy_scene.instance()
-	enemy.target = target.position
-	enemy.position = Vector2(target.position.x + rand_range(-100, 100), -size.y)
+	enemy.target = target.get_parent().position
+	enemy.position = Vector2(enemy.target.x + rand_range(-100, 100), -size.y)
 	terrain.line.add_child(enemy)
 	globals.add_entity(enemy, "enemies")
 	map.add_enemy(enemy)
