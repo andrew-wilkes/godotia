@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Terrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Statistics.tscn" type="PackedScene" id=4]
 [ext_resource path="res://textures/shaders/star-sky.shader" type="Shader" id=6]
 [ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Sky.gd" type="Script" id=8]
@@ -62,4 +63,7 @@ margin_bottom = 78.0
 
 [node name="Spawner" type="Timer" parent="."]
 one_shot = true
+
+[node name="Statistics" parent="." instance=ExtResource( 4 )]
+margin_bottom = 108.0
 [connection signal="timeout" from="Spawner" to="." method="_on_Spawner_timeout"]

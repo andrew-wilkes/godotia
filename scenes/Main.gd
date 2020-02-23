@@ -21,6 +21,7 @@ var missile_scene = preload("res://scenes/Missile.tscn")
 var sky_pos = 0
 var enemies_to_spawn = 0
 var size
+var stats
 
 func _ready():
 	background = $ParallaxBackground
@@ -30,6 +31,7 @@ func _ready():
 	player.direction = RIGHT
 	anim = $AnimationPlayer
 	map = $Map
+	stats = $Statistics
 	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
 	terrain = find_node("Terrain")
 	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
@@ -48,6 +50,8 @@ func resize():
 	sky.resize(size)
 	map.resize(terrain, size.y)
 	map.rect_position.x = (size.x - map.rect_size.x) / 2
+	stats.rect_size.x = size.x
+	MarginContainer
 
 
 func start_game():
