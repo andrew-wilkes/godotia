@@ -20,6 +20,10 @@ func _on_Player_body_entered(body):
 
 
 func _on_Player_area_entered(_area):
+	if _area is Shot:
+		print("Shot")
+	if _area is Enemy:
+		print("Enemy")
 	print(_area.name)
 
 

@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Missile
+
 var speed = 500
 var direction = 1
 var max_x

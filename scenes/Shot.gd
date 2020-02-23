@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Shot
+
 var speed = 300
 var direction : Vector2
 

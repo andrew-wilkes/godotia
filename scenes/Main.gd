@@ -3,8 +3,8 @@ extends Node2D
 const THRUST = 500
 const MAX_SPEED = 500
 const TOP_LEVEL = 14
-const TEST_STRUCT = true
-const TEST_ENEMY = true
+const TEST_STRUCT = false
+const TEST_ENEMY = false
 
 enum { LEFT, RIGHT }
 

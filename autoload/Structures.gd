@@ -15,3 +15,4 @@ func _ready():
 			print(generate().title)
 	else:
 		visible = false
+		position.y = -999 # Prevent unwanted collisions with the autoloaded nodes
