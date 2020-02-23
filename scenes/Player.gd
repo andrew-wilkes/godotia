@@ -13,12 +13,14 @@ func _on_Player_body_entered(body):
 		body.state = body.states.STATIC
 		globals.call_deferred("reparent_structure", self, self, Vector2(4, 16), sid)
 	elif sid and body.collision_mask == 0 and body.get_child_count() < 2:
+		# Allow re-targeting of structure
+		globals.structures[sid].targeted = false
 		# Place structure on empty terrain flat
 		globals.call_deferred("reparent_structure", self, body.get_parent(), body.position)
 
 
 func _on_Player_area_entered(_area):
-	pass
+	print(_area.name)
 
 
 func move(dx, dy = 0):

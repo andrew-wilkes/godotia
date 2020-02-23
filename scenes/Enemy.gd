@@ -3,7 +3,7 @@ extends Area2D
 enum { MOVING_TO_TARGET, DRAINING_ENERGY, MOVING_TO_PLAYER, LIFTING }
 
 const SPEED = 100
-const RATE_OF_DRAINING_ENERGY = 200
+const RATE_OF_DRAINING_ENERGY = 100
 
 var state = MOVING_TO_TARGET
 var target : Vector2
@@ -21,9 +21,10 @@ func _process(delta):
 		MOVING_TO_TARGET:
 			move(delta)
 		DRAINING_ENERGY:
-			if globals.structures[sid].get_energy_all_got(RATE_OF_DRAINING_ENERGY * delta):
+			if sid and globals.structures[sid].get_energy_all_got(RATE_OF_DRAINING_ENERGY * delta):
 				state = MOVING_TO_PLAYER
 				globals.structures[sid].targeted = false
+				sid = 0
 		MOVING_TO_PLAYER:
 			target = globals.player.global_position - get_parent().global_position
 			move(delta)
@@ -47,10 +48,16 @@ func move(delta):
 
 
 func _on_Enemy_area_entered(_area):
-	# Got hit by player of missile
+	# Got hit by player or a missile
 	if sid:
-		globals.structures[sid].state = globals.structures[sid].states.FALLING
-		globals.call_deferred("reparent_structure", self, get_parent(), self.position)
+		if state == LIFTING:
+			globals.structures[sid].state = globals.structures[sid].states.FALLING
+			globals.call_deferred("reparent_structure", self, get_parent(), self.position)
+		else:
+			# Was leeching off an energy source
+			globals.structures[sid].targeted = false
+			globals.structures[sid].charging = true
+			sid = 0
 	got_hit()
 	destroy()
 
