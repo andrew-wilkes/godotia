@@ -90,7 +90,7 @@ func pick_target():
 func add_enemy(target):
 	var enemy = enemy_scene.instance()
 	enemy.target = target.position
-	enemy.position = Vector2(target.position.x + rand_range(-100, 100), -size.y / 3)
+	enemy.position = Vector2(target.position.x + rand_range(-100, 100), -size.y)
 	terrain.line.add_child(enemy)
 	globals.add_entity(enemy, "enemies")
 	map.add_enemy(enemy)
@@ -116,11 +116,6 @@ func process_inputs(delta):
 		player.move(0, delta)
 	if Input.is_action_just_pressed("ui_accept"):
 		fire_missile()
-	if Input.is_action_just_pressed("ui_end"):
-		if globals.temp:
-			print(globals.temp.get_parent().name)
-		else:
-			print("null")
 
 
 func fire_missile():

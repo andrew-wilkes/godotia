@@ -49,7 +49,7 @@ func move(delta):
 func _on_Enemy_area_entered(area):
 	if sid:
 		if area.name == "Player":
-			call_deferred("reparent_structure", area, Vector2())
+			call_deferred("reparent_structure", area, Vector2(4, 16))
 		else:
 			globals.structures[sid].state = globals.structures[sid].states.FALLING
 			call_deferred("reparent_structure", get_parent(), self.position)
@@ -68,7 +68,7 @@ func _on_Enemy_body_entered(body):
 			"Building":
 				state = LIFTING
 				# Reparent the structure from terrain to enemy
-				call_deferred("reparent_structure", $Hook, Vector2(-8, 8), sid)
+				call_deferred("reparent_structure", self, Vector2(-8, 8), sid)
 				target = Vector2(position.x, -8000)
 			"EnergySource":
 				state = DRAINING_ENERGY
