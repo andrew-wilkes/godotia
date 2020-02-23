@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 class_name Structure, "res://textures/structures/aparto.png"
 
-const ACCEL = 9.8
+const ACCEL = 20
+const CRASH_SPEED = 40
 
 enum states { STATIC, FALLING }
 
@@ -19,5 +20,16 @@ func _physics_process(delta):
 		velocity.y += delta * ACCEL
 		var collision = move_and_collide(velocity * delta)
 		if collision:
+			if velocity.y >= CRASH_SPEED:
+				print("Structure crash speed: ", velocity.y)
+				destroy()
 			velocity.y = 0
 			state = states.STATIC
+		if position.y > 0:
+			print("Structure hit ground")
+			state = states.STATIC
+			destroy()
+
+
+func destroy():
+	visible = false

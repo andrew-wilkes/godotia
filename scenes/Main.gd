@@ -3,6 +3,8 @@ extends Node2D
 const THRUST = 500
 const MAX_SPEED = 500
 const TOP_LEVEL = 14
+const TEST_STRUCT = true
+const TEST_ENEMY = true
 
 enum { LEFT, RIGHT }
 
@@ -42,7 +44,7 @@ func _ready():
 
 func resize():
 	size = get_viewport_rect().size
-	terrain.set_base_level(size.y)
+	terrain.set_base_level(size)
 	sky.resize(size)
 	map.resize(terrain, size.y)
 	map.rect_position.x = (size.x - map.rect_size.x) / 2
@@ -56,11 +58,20 @@ func start_game():
 		var structure = Structures.generate()
 		globals.add_entity(structure, "structures")
 		node.add_child(structure)
-		pass
 	map.add_structures()
 	map.add_player(player, scroll_position, terrain)
 	enemies_to_spawn = 10
 	spawn_enemy()
+	if TEST_STRUCT:
+		add_test_structure()
+
+
+func add_test_structure():
+	# Test falling
+	var structure = Structures.generate()
+	structure.position = Vector2(scroll_position + 16, -80)
+	structure.state = 1
+	terrain.line.add_child(structure)
 
 
 func spawn_enemy():
@@ -68,7 +79,8 @@ func spawn_enemy():
 		var target = pick_target()
 		if target:
 			add_enemy(target)
-	#$Spawner.start(rand_range(1, 5))
+	if !TEST_ENEMY:
+		$Spawner.start(rand_range(1, 5))
 
 
 func _on_Spawner_timeout():
@@ -83,7 +95,10 @@ func pick_target():
 			targets.append(i)
 	var pick = false
 	if targets.size():
-		pick = globals.structures[targets[17]] #randi() % targets.size()]]
+		var i = randi() % targets.size()
+		if TEST_ENEMY:
+			i = 18 # Manually choose a target
+		pick = globals.structures[targets[i]]
 	pick.targeted = true
 	return pick
 

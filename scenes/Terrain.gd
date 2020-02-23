@@ -8,6 +8,7 @@ const MAX_X_TARGET = 5000
 const MAX_HEIGHT = 300
 
 var line
+var ground
 var base_level
 var flats = []
 var last_point
@@ -21,8 +22,8 @@ func _ready():
 	add_collision_surfaces()
 
 
-func set_base_level(y_size):
-	base_level = y_size - GRID_SIZE
+func set_base_level(size):
+	base_level = size.y - GRID_SIZE
 	line.position.y = base_level
 
 
