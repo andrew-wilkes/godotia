@@ -46,13 +46,11 @@ func move(delta):
 	position = position.move_toward(target, SPEED * delta)
 
 
-func _on_Enemy_area_entered(area):
+func _on_Enemy_area_entered(_area):
+	# Got hit by player of missile
 	if sid:
-		if area.name == "Player":
-			globals.call_deferred("reparent_structure", self, area, Vector2(4, 16))
-		else:
-			globals.structures[sid].state = globals.structures[sid].states.FALLING
-			globals.call_deferred("reparent_structure", self, get_parent(), self.position)
+		globals.structures[sid].state = globals.structures[sid].states.FALLING
+		globals.call_deferred("reparent_structure", self, get_parent(), self.position)
 	got_hit()
 	destroy()
 

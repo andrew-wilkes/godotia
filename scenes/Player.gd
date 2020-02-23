@@ -4,13 +4,17 @@ const SPEED = Vector2(500, 500)
 const MARGIN = 128
 
 var direction : int
+var sid = 0
 
 func _on_Player_body_entered(body):
-	$Label.text = body.name
+	if body is Structure and body.state == body.states.FALLING:
+		sid = body.get_instance_id()
+		body.state = body.states.STATIC
+		globals.call_deferred("reparent_structure", self, self, Vector2(4, 16), sid)
 
 
-func _on_Player_area_entered(area):
-	$Label.text = area.name
+func _on_Player_area_entered(_area):
+	pass
 
 
 func move(dx, dy = 0):
