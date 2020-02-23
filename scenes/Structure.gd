@@ -27,9 +27,9 @@ func _physics_process(delta):
 			state = states.STATIC
 		if position.y > 0:
 			print("Structure hit ground")
-			state = states.STATIC
 			destroy()
 
 
 func destroy():
+	state = states.STATIC
 	visible = false

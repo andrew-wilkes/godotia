@@ -1,6 +1,6 @@
 extends Area2D
 
-enum { MOVING_TO_TARGET, DRAINING_ENERGY, MOVING_TO_PLAYER, LIFTING }
+enum { MOVING_TO_TARGET, DRAINING_ENERGY, MOVING_TO_PLAYER, LIFTING, DEAD }
 
 const SPEED = 100
 const RATE_OF_DRAINING_ENERGY = 100
@@ -21,7 +21,7 @@ func _process(delta):
 		MOVING_TO_TARGET:
 			move(delta)
 		DRAINING_ENERGY:
-			if sid and globals.structures[sid].get_energy_all_got(RATE_OF_DRAINING_ENERGY * delta):
+			if globals.structures[sid].get_energy_all_got(RATE_OF_DRAINING_ENERGY * delta):
 				state = MOVING_TO_PLAYER
 				globals.structures[sid].targeted = false
 				sid = 0
@@ -57,7 +57,7 @@ func _on_Enemy_area_entered(_area):
 			# Was leeching off an energy source
 			globals.structures[sid].targeted = false
 			globals.structures[sid].charging = true
-			sid = 0
+			state = DEAD
 	got_hit()
 	destroy()
 
