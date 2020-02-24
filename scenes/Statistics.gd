@@ -88,3 +88,7 @@ func start_clock():
 
 func stop_clock():
 	$Clock.stop()
+
+
+func add_points(points):
+	self.score += points

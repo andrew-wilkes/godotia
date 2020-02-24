@@ -5,7 +5,7 @@ const MAX_SPEED = 500
 const TOP_LEVEL = 14
 const TEST_STRUCT = false
 const TEST_ENEMY = true
-const TEST_TARGET_INDEX = 17
+const TEST_TARGET_INDEX = 18
 
 enum { LEFT, RIGHT }
 
@@ -116,6 +116,7 @@ func add_enemy(target):
 	var enemy = enemy_scene.instance()
 	enemy.target = target.get_parent().position
 	enemy.position = Vector2(enemy.target.x + rand_range(-100, 100), -size.y)
+	enemy.connect("enemy_killed", stats, "add_points")
 	terrain.line.add_child(enemy)
 	globals.add_entity(enemy, "enemies")
 	map.add_enemy(enemy)

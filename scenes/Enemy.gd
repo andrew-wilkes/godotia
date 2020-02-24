@@ -2,6 +2,8 @@ extends Area2D
 
 class_name Enemy
 
+signal enemy_killed(points)
+
 enum { MOVING_TO_TARGET, DRAINING_ENERGY, MOVING_TO_PLAYER, LIFTING, DEAD }
 
 const SPEED = 100
@@ -13,6 +15,8 @@ var sid = 0
 var shot_scene = preload("res://scenes/Shot.tscn")
 var in_range : bool
 var shot_range_squared : float
+var points = 10
+const BONUS_POINTS = 50
 
 func _init():
 	shot_range_squared = pow(rand_range(globals.shots.range1, globals.shots.range2), 2)
@@ -50,7 +54,7 @@ func move(delta):
 	position = position.move_toward(target, SPEED * delta)
 
 
-func _on_Enemy_area_entered(_area):
+func _on_Enemy_area_entered(area):
 	# Got hit by player or a missile
 	if sid:
 		var s = globals.structures[sid]
@@ -61,7 +65,10 @@ func _on_Enemy_area_entered(_area):
 			# Was leeching off an energy source
 			s.targeted = false
 			s.charging = true
-	got_hit()
+	if area.name != "Player":
+		if state == MOVING_TO_PLAYER:
+			points = BONUS_POINTS
+		emit_signal("enemy_killed", points)
 	destroy()
 
 
@@ -90,10 +97,6 @@ func fire():
 		shot.direction = (target - position).normalized()
 		get_parent().add_child(shot)
 		$ShotTimer.start(rand_range(globals.shots.fire_delay1, globals.shots.fire_delay2))
-
-
-func got_hit():
-	pass
 
 
 func got_building():
