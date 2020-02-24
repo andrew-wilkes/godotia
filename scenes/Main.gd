@@ -5,6 +5,7 @@ const MAX_SPEED = 500
 const TOP_LEVEL = 14
 const TEST_STRUCT = false
 const TEST_ENEMY = true
+const TEST_TARGET_INDEX = 17
 
 enum { LEFT, RIGHT }
 
@@ -105,7 +106,7 @@ func pick_target():
 	if targets.size():
 		var i = randi() % targets.size()
 		if TEST_ENEMY:
-			i = 17 # Manually choose a target
+			i = TEST_TARGET_INDEX # Manually choose a target
 		pick = globals.structures[targets[i]]
 	pick.targeted = true
 	return pick
@@ -127,6 +128,7 @@ func _process(delta):
 	move_player_sideways(delta)
 	map.position_player(player, scroll_position, terrain)
 	map.update_all_entities(scroll_position)
+	stats.update()
 
 
 func process_inputs(delta):

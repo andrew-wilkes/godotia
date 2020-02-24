@@ -55,7 +55,7 @@ func _on_Enemy_area_entered(_area):
 	if sid:
 		var s = globals.structures[sid]
 		if state == LIFTING:
-			s.state = globals.structures[sid].states.FALLING
+			s.state = s.states.FALLING
 			s.call_deferred("reparent", self, get_parent(), self.position)
 		else:
 			# Was leeching off an energy source
