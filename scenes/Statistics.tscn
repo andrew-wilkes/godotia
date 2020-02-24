@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://textures/plane.png" type="Texture" id=1]
+[ext_resource path="res://textures/plane_32.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Statistics.gd" type="Script" id=2]
 
 [node name="Statistics" type="MarginContainer"]
@@ -30,30 +30,58 @@ custom_constants/separation = 10
 
 [node name="Lives" type="HBoxContainer" parent="HBox/Left"]
 margin_right = 200.0
-margin_bottom = 26.0
+margin_bottom = 13.0
 
 [node name="TextureRect" type="TextureRect" parent="HBox/Left/Lives"]
-margin_right = 64.0
-margin_bottom = 26.0
+margin_right = 32.0
+margin_bottom = 13.0
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBox/Left/Lives"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 13.0
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HBox/Left/Lives"]
+margin_left = 72.0
+margin_right = 104.0
+margin_bottom = 13.0
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="HBox/Left/Lives"]
+margin_left = 108.0
+margin_right = 140.0
+margin_bottom = 13.0
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="HBox/Left/Lives"]
+margin_left = 144.0
+margin_right = 176.0
+margin_bottom = 13.0
 texture = ExtResource( 1 )
 stretch_mode = 1
 
 [node name="Health" type="ProgressBar" parent="HBox/Left"]
-margin_top = 36.0
+margin_top = 23.0
 margin_right = 200.0
-margin_bottom = 50.0
+margin_bottom = 37.0
 value = 100.0
 
 [node name="Level" type="Label" parent="HBox/Left"]
-margin_top = 60.0
+margin_top = 47.0
 margin_right = 200.0
-margin_bottom = 74.0
+margin_bottom = 61.0
 text = "Level: 1"
 
 [node name="Score" type="Label" parent="HBox/Left"]
-margin_top = 84.0
+margin_top = 71.0
 margin_right = 200.0
-margin_bottom = 98.0
+margin_bottom = 85.0
 text = "Score: 888888"
 
 [node name="ColorRect" type="ColorRect" parent="HBox"]
@@ -86,3 +114,6 @@ margin_top = 48.0
 margin_right = 200.0
 margin_bottom = 62.0
 value = 100.0
+
+[node name="Clock" type="Timer" parent="."]
+[connection signal="timeout" from="Clock" to="." method="_on_Clock_timeout"]

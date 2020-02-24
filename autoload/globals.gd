@@ -16,6 +16,17 @@ func add_entity(entity, target):
 	get(target)[entity.get_instance_id()] = entity
 
 
+func get_status():
+	var pop = 0
+	var energy = 0
+	for s in structures.values():
+		if s.TYPE == "Building":
+			pop += s.population
+		else:
+			energy += s.energy
+	return { p = pop, e = energy }
+
+
 func output(msg):
 	if OUTPUT:
 		print(msg)

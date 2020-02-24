@@ -65,8 +65,13 @@ func start_game():
 	map.add_player(player, scroll_position, terrain)
 	enemies_to_spawn = 10
 	spawn_enemy()
+	stats.reset()
 	if TEST_STRUCT:
 		add_test_structure()
+
+
+func stop_game():
+	stats.stop_clock()
 
 
 func add_test_structure():
