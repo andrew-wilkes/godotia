@@ -33,3 +33,12 @@ func _physics_process(delta):
 func destroy():
 	state = states.STATIC
 	visible = false
+
+
+func reparent(caller: Node, dest: Node, pos: Vector2, _sid = 0):
+	globals.output("Rep sid: %s" % caller.sid)
+	if get_parent() != dest:
+		get_parent().remove_child(self)
+		position = pos
+		dest.add_child(self)
+		caller.sid = _sid

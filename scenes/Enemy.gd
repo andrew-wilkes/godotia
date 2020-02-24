@@ -53,13 +53,14 @@ func move(delta):
 func _on_Enemy_area_entered(_area):
 	# Got hit by player or a missile
 	if sid:
+		var s = globals.structures[sid]
 		if state == LIFTING:
-			globals.structures[sid].state = globals.structures[sid].states.FALLING
-			globals.call_deferred("reparent_structure", self, get_parent(), self.position)
+			s.state = globals.structures[sid].states.FALLING
+			s.call_deferred("reparent", self, get_parent(), self.position)
 		else:
 			# Was leeching off an energy source
-			globals.structures[sid].targeted = false
-			globals.structures[sid].charging = true
+			s.targeted = false
+			s.charging = true
 	got_hit()
 	destroy()
 
@@ -75,7 +76,8 @@ func _on_Enemy_body_entered(body):
 			"Building":
 				state = LIFTING
 				# Reparent the structure from terrain to enemy
-				globals.call_deferred("reparent_structure", self, self, Vector2(-8, 8), sid)
+				#globals.call_deferred("reparent_structure", self, self, Vector2(-8, 8), sid)
+				body.call_deferred("reparent", self, self, Vector2(-8, 8), sid)
 				target = Vector2(position.x, -8000)
 			"EnergySource":
 				state = DRAINING_ENERGY
