@@ -4,7 +4,8 @@ const THRUST = 500
 const MAX_SPEED = 500
 const TOP_LEVEL = 14
 const TEST_STRUCT = false
-const TEST_ENEMY = true
+const TEST_ENEMY = false
+const TEST_TARGET_INDEX = 18
 
 enum { LEFT, RIGHT }
 
@@ -54,6 +55,8 @@ func resize():
 
 
 func start_game():
+	player.connect("got_hit", stats, "reduce_health")
+	player.connect("crashed", stats, "lose_life")
 	player.position.x = player.MARGIN
 	# Add structures to terrain flats
 	var nodes = terrain.get_nodes_for_structures(Structures.DENSITY)
@@ -105,7 +108,7 @@ func pick_target():
 	if targets.size():
 		var i = randi() % targets.size()
 		if TEST_ENEMY:
-			i = 17 # Manually choose a target
+			i = TEST_TARGET_INDEX # Manually choose a target
 		pick = globals.structures[targets[i]]
 	pick.targeted = true
 	return pick
@@ -115,6 +118,7 @@ func add_enemy(target):
 	var enemy = enemy_scene.instance()
 	enemy.target = target.get_parent().position
 	enemy.position = Vector2(enemy.target.x + rand_range(-100, 100), -size.y)
+	enemy.connect("enemy_killed", stats, "add_points")
 	terrain.line.add_child(enemy)
 	globals.add_entity(enemy, "enemies")
 	map.add_enemy(enemy)
@@ -127,6 +131,7 @@ func _process(delta):
 	move_player_sideways(delta)
 	map.position_player(player, scroll_position, terrain)
 	map.update_all_entities(scroll_position)
+	stats.update()
 
 
 func process_inputs(delta):

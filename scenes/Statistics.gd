@@ -48,6 +48,7 @@ func _lives(n):
 
 func _health(n):
 	health = n
+	nodes.health.value = n
 
 
 func _level(n):
@@ -88,3 +89,19 @@ func start_clock():
 
 func stop_clock():
 	$Clock.stop()
+
+
+func add_points(points):
+	self.score += points
+
+
+func reduce_health(sid):
+	self.health -= 1
+	if health <= 0:
+		lose_life(sid)
+
+
+func lose_life(sid):
+	self.lives -= 1
+	if sid:
+		globals.structures[sid].destroy()

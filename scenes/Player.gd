@@ -1,5 +1,8 @@
 extends Area2D
 
+signal got_hit(sid)
+signal crashed(sid)
+
 const SPEED = Vector2(500, 500)
 const MARGIN = 128
 
@@ -24,10 +27,9 @@ func _on_Player_body_entered(body):
 
 func _on_Player_area_entered(_area):
 	if _area is Shot:
-		print("Shot")
+		emit_signal("got_hit", sid)
 	if _area is Enemy:
-		print("Enemy")
-	print(_area.name)
+		emit_signal("crashed", sid)
 
 
 func move(dx, dy = 0):
