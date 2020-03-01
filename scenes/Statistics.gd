@@ -1,5 +1,7 @@
 extends MarginContainer
 
+signal game_over
+
 var lives setget _lives
 var health setget _health
 var level setget _level
@@ -103,5 +105,9 @@ func reduce_health(sid):
 
 func lose_life(sid):
 	self.lives -= 1
-	if sid:
-		globals.structures[sid].destroy()
+	var respawn = self.lives > 0
+	globals.player.explode(respawn)
+	if sid and globals.structures.has(sid):
+			globals.structures[sid].destroy()
+	if !respawn:
+		emit_signal("game_over")

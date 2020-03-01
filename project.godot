@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://scenes/Missile.gd"
 }, {
 "base": "Area2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scenes/Player.gd"
+}, {
+"base": "Area2D",
 "class": "Shot",
 "language": "GDScript",
 "path": "res://scenes/Shot.gd"
@@ -49,6 +54,7 @@ _global_script_class_icons={
 "GSky": "",
 "Map": "",
 "Missile": "",
+"Player": "",
 "Shot": "",
 "Structure": "res://textures/structures/aparto.png",
 "Terrain": ""

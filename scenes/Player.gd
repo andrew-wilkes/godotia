@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Player
+
 signal got_hit(sid)
 signal crashed(sid)
 
@@ -8,6 +10,7 @@ const MARGIN = 128
 
 var direction : int
 var sid = 0
+var alive = true
 
 func _on_Player_body_entered(body):
 	if !sid and body is Structure and body.state == body.states.FALLING:
@@ -45,3 +48,18 @@ func distance_to_left():
 
 func distance_to_right():
 	return get_viewport_rect().size.x - MARGIN - position.x
+
+
+func explode(respawn):
+	alive = respawn
+	$AnimationPlayer.play("Explosion")
+
+
+func respawn():
+	$Sprite.material.set_shader_param("multiplier", 0)
+	$Sprite.modulate.a = 1.0
+
+
+func _on_AnimationPlayer_animation_finished(_anim_name):
+	if alive:
+		respawn()
