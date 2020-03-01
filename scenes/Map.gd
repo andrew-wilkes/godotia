@@ -2,6 +2,8 @@ extends ColorRect
 
 class_name Map
 
+signal end_of_level
+
 const SCALE = 0.25
 const ITEM_SCALE = Vector2(SCALE, SCALE)
 
@@ -62,6 +64,8 @@ func update_entities(entities, scroll_position):
 func update_all_entities(scroll_position):
 	update_entities("structures", scroll_position)
 	update_entities("enemies", scroll_position)
+	if enemies.get_child_count() < 1:
+		emit_signal("end_of_level")
 
 
 func get_node_position(node, offset):

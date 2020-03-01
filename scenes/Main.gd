@@ -90,8 +90,9 @@ func spawn_enemy():
 		var target = pick_target()
 		if target:
 			add_enemy(target)
-	if !TEST_ENEMY:
-		$Spawner.start(rand_range(1, 5))
+			enemies_to_spawn -= 1
+			if !TEST_ENEMY:
+				$Spawner.start(rand_range(1, 5))
 
 
 func _on_Spawner_timeout():
