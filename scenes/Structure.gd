@@ -36,8 +36,8 @@ func destroy():
 
 
 func reparent(caller: Node, dest: Node, pos: Vector2, _sid = 0):
-	globals.output("Rep sid: %s" % caller.sid)
 	if get_parent() != dest:
+		globals.output("Reparent: %s to %s" % [caller.sid, dest.name])
 		get_parent().remove_child(self)
 		position = pos
 		dest.add_child(self)
