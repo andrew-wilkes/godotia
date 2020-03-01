@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/Shot.gd"
 }, {
+"base": "MarginContainer",
+"class": "Statistics",
+"language": "GDScript",
+"path": "res://scenes/Statistics.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Structure",
 "language": "GDScript",
@@ -56,6 +61,7 @@ _global_script_class_icons={
 "Missile": "",
 "Player": "",
 "Shot": "",
+"Statistics": "",
 "Structure": "res://textures/structures/aparto.png",
 "Terrain": ""
 }

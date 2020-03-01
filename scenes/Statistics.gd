@@ -1,5 +1,7 @@
 extends MarginContainer
 
+class_name Statistics
+
 signal game_over
 
 var lives setget _lives
@@ -66,6 +68,8 @@ func _score(n):
 func _population(n):
 	population = n
 	nodes.population.text = "Population: %d" % n
+	if n < 1:
+		emit_signal("game_over")
 
 
 func _time(n):

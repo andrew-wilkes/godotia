@@ -13,7 +13,7 @@ var background : ParallaxBackground
 var sky: GSky
 var terrain : Terrain
 var anim : AnimationPlayer
-var player
+var player : Player
 var map: Map
 var scroll_position
 var speed = 0
@@ -22,7 +22,7 @@ var missile_scene = preload("res://scenes/Missile.tscn")
 var sky_pos = 0
 var enemies_to_spawn = 0
 var size
-var stats
+var stats : Statistics
 
 func _ready():
 	background = $ParallaxBackground
@@ -55,9 +55,11 @@ func resize():
 
 
 func start_game():
-	player.connect("got_hit", stats, "reduce_health")
-	player.connect("crashed", stats, "lose_life")
+	ig(player.connect("got_hit", stats, "reduce_health"))
+	ig(player.connect("crashed", stats, "lose_life"))
 	player.position.x = player.MARGIN
+	ig(stats.connect("game_over", self, "game_over"))
+	ig(map.connect("end_of_level", self, "increase_level"))
 	# Add structures to terrain flats
 	var nodes = terrain.get_nodes_for_structures(Structures.DENSITY)
 	for node in nodes:
@@ -73,7 +75,11 @@ func start_game():
 		add_test_structure()
 
 
-func stop_game():
+func increase_level():
+	pass
+
+
+func game_over():
 	stats.stop_clock()
 
 
@@ -181,3 +187,8 @@ func turn_player():
 		player.direction = RIGHT
 		anim.play_backwards("PlayerTurn")
 		map.turn_player()
+
+
+func ig(_v):
+	# Ignore return value
+	pass
