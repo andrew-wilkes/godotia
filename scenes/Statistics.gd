@@ -74,7 +74,7 @@ func _population(n):
 
 func _time(n):
 	time = n
-	nodes.time.text = "Survival time: %02d:%02d" % [n / 100, n % 100]
+	nodes.time.text = "Survival time: %02d:%02d" % [n / 60, n % 60]
 
 
 func _energy(n):
