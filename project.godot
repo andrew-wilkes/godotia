@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/Shot.gd"
 }, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://scenes/StateMachine.gd"
+}, {
 "base": "MarginContainer",
 "class": "Statistics",
 "language": "GDScript",
@@ -61,6 +66,7 @@ _global_script_class_icons={
 "Missile": "",
 "Player": "",
 "Shot": "",
+"StateMachine": "",
 "Statistics": "",
 "Structure": "res://textures/structures/aparto.png",
 "Terrain": ""
