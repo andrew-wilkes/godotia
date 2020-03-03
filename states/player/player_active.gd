@@ -14,6 +14,7 @@ func process(_delta):
 			try_to_place_stucture()
 		else:
 			try_to_catch_stucture()
+		p.body_entered = null
 
 
 func try_to_place_stucture():
@@ -31,6 +32,3 @@ func try_to_catch_stucture():
 		p.body_entered.state = p.body_entered.states.STATIC
 		p.body_entered.reparent(p, p, Vector2(4, 16), p.sid)
 		globals.output("%s to player" % p.sid)
-	else:
-		# Ignore it
-		p.body_entered = null
