@@ -12,7 +12,6 @@ var line: Line2D
 var structures
 var enemies
 var player
-var plane
 
 func _ready():
 	line = $Line2D
@@ -73,14 +72,12 @@ func get_node_position(node, offset):
 
 
 func add_player(p, scroll_position, terrain): 
-	player = p.duplicate()
-	player.get_child(0).queue_free()
+	player = p.get_node("Sprite").duplicate()
 	position_player(p, scroll_position, terrain)
 	add_child(player)
-	plane = player.get_node("Sprite")
 
 
-func position_player(p, scroll_position: int, terrain):
+func position_player(p, scroll_position, terrain):
 	player.scale = ITEM_SCALE * 0.5
 	var max_x = terrain.last_point.x
 	var x = wrapf(max_x - scroll_position + p.position.x, 0, max_x)
@@ -88,4 +85,4 @@ func position_player(p, scroll_position: int, terrain):
 
 
 func turn_player():
-	plane.flip_h = !plane.flip_h
+	player.flip_h = !player.flip_h

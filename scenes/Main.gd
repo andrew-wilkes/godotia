@@ -39,7 +39,6 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "resize")
 	resize()
 	map.set_points(terrain)
-	print("Ready")
 
 
 func resize():
