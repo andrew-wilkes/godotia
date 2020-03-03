@@ -7,8 +7,6 @@ const TEST_STRUCT = false
 const TEST_ENEMY = false
 const TEST_TARGET_INDEX = 18
 
-enum { LEFT, RIGHT }
-
 var background : ParallaxBackground
 var sky: GSky
 var terrain : Terrain
@@ -59,7 +57,7 @@ func add_player():
 	player = player_scene.instance()
 	add_child(player)
 	globals.player = player
-	player.direction = RIGHT
+	player.direction = player.RIGHT
 	player.position = Vector2(player.MARGIN, size.y / 2)
 	ig(player.connect("got_hit", stats, "reduce_health"))
 	ig(player.connect("crashed", stats, "lose_life"))
@@ -137,8 +135,8 @@ func add_enemy(target):
 func _process(delta):
 	process_inputs(delta)
 	move_background(speed * delta)
-	turn_player()
-	move_player_sideways(delta)
+	player.turn()
+	player.move_sideways(delta)
 	map.position_player(player, scroll_position, terrain)
 	map.update_all_entities(scroll_position)
 	stats.update()
@@ -168,28 +166,6 @@ func move_background(delta):
 	background.scroll_offset.x = scroll_position
 	sky_pos += delta
 	sky.set_offset(sky_pos)
-
-
-func move_player_sideways(delta):
-	if player.direction == LEFT and player.distance_to_right() > 0:
-		change_position(delta)
-	if player.direction == RIGHT and player.distance_to_left() > 0:
-		change_position(-delta)
-
-
-func change_position(delta):
-	scroll_position += player.move(delta)
-
-
-func turn_player():
-	if player.direction == RIGHT and speed > 0:
-		player.direction = LEFT
-		anim.play("PlayerTurn")
-		map.turn_player()
-	if player.direction == LEFT and speed < 0:
-		player.direction = RIGHT
-		anim.play_backwards("PlayerTurn")
-		map.turn_player()
 
 
 func ig(_v):

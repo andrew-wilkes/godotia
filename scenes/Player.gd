@@ -8,6 +8,8 @@ signal crashed(sid)
 const SPEED = Vector2(500, 500)
 const MARGIN = 128
 
+enum { LEFT, RIGHT }
+
 var direction : int
 var sid = 0
 var alive = true
@@ -63,3 +65,25 @@ func respawn():
 func _on_AnimationPlayer_animation_finished(_anim_name):
 	if alive:
 		respawn()
+
+
+func turn():
+	if direction == RIGHT and globals.game.speed > 0:
+		direction = LEFT
+		$AnimationPlayer.play("PlayerTurn")
+		globals.game.map.turn_player()
+	if direction == LEFT and globals.game.speed < 0:
+		direction = RIGHT
+		$AnimationPlayer.play_backwards("PlayerTurn")
+		globals.game.map.turn_player()
+
+
+func move_sideways(delta):
+	if direction == LEFT and distance_to_right() > 0:
+		change_position(delta)
+	if direction == RIGHT and distance_to_left() > 0:
+		change_position(-delta)
+
+
+func change_position(delta):
+	globals.game.scroll_position += move(delta)
