@@ -11,7 +11,7 @@ var history = []
 func _ready():
 	# Set the initial state to the first child node
 	state = get_child(0)
-	_enter_state()
+	call_deferred("_enter_state")
 	
 func change_to(new_state):
 	history.append(state.name)

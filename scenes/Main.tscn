@@ -1,14 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Terrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Statistics.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/StateMachine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://textures/shaders/star-sky.shader" type="Shader" id=6]
 [ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Sky.gd" type="Script" id=8]
-[ext_resource path="res://states/game/gs1.gd" type="Script" id=9]
+[ext_resource path="res://states/game/start_game.gd" type="Script" id=9]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -18,18 +17,6 @@ shader_param/x_offset = 0.0
 
 [sub_resource type="Animation" id=2]
 length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("Player:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ) ]
-}
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -48,9 +35,6 @@ __meta__ = {
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Terrain" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource( 2 )]
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 213.75, 280.25 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/PlayerTurn = SubResource( 2 )
@@ -71,6 +55,6 @@ margin_bottom = 108.0
 
 [node name="States" parent="." instance=ExtResource( 5 )]
 
-[node name="gs1" type="Node" parent="States"]
+[node name="start_game" type="Node" parent="States"]
 script = ExtResource( 9 )
 [connection signal="timeout" from="Spawner" to="." method="_on_Spawner_timeout"]

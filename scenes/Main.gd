@@ -19,17 +19,16 @@ var scroll_position
 var speed = 0
 var enemy_scene = preload("res://scenes/Enemy.tscn")
 var missile_scene = preload("res://scenes/Missile.tscn")
+var player_scene = preload("res://scenes/Player.tscn")
 var sky_pos = 0
 var enemies_to_spawn = 0
 var size
 var stats : Statistics
 
 func _ready():
+	globals.game = self
 	background = $ParallaxBackground
 	sky = find_node("Sky")
-	player = $Player
-	globals.player = player
-	player.direction = RIGHT
 	anim = $AnimationPlayer
 	map = $Map
 	stats = $Statistics
@@ -42,7 +41,9 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "resize")
 	resize()
 	map.set_points(terrain)
-	start_game()
+	ig(stats.connect("game_over", self, "game_over"))
+	ig(map.connect("end_of_level", self, "increase_level"))
+	print("Ready")
 
 
 func resize():
@@ -54,23 +55,25 @@ func resize():
 	stats.rect_size.x = size.x
 
 
-func start_game():
+func add_player():
+	player = player_scene.instance()
+	add_child(player)
+	globals.player = player
+	player.direction = RIGHT
+	player.position = Vector2(player.MARGIN, size.y / 2)
 	ig(player.connect("got_hit", stats, "reduce_health"))
 	ig(player.connect("crashed", stats, "lose_life"))
-	player.position.x = player.MARGIN
-	ig(stats.connect("game_over", self, "game_over"))
-	ig(map.connect("end_of_level", self, "increase_level"))
-	# Add structures to terrain flats
+	map.add_player(player, scroll_position, terrain)
+
+
+func add_structures():
+	# Add to terrain flats
 	var nodes = terrain.get_nodes_for_structures(Structures.DENSITY)
 	for node in nodes:
 		var structure = Structures.generate()
 		globals.add_entity(structure, "structures")
 		node.add_child(structure)
 	map.add_structures()
-	map.add_player(player, scroll_position, terrain)
-	enemies_to_spawn = 10
-	spawn_enemy()
-	stats.reset()
 	if TEST_STRUCT:
 		add_test_structure()
 

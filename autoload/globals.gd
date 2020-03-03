@@ -2,6 +2,7 @@ extends Node
 
 const OUTPUT = true
 
+var game
 var player
 var structures = {}
 var enemies = {}
