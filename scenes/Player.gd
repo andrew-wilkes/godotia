@@ -13,6 +13,7 @@ enum { LEFT, RIGHT }
 var direction = RIGHT
 var sid = 0
 var alive = true
+var body_entered
 
 func _process(delta):
 	turn()
@@ -20,19 +21,7 @@ func _process(delta):
 
 
 func _on_Player_body_entered(body):
-	if !sid and body is Structure and body.state == body.states.FALLING:
-		# Catch falling structure
-		sid = body.get_instance_id()
-		body.state = body.states.STATIC
-		body.call_deferred("reparent", self, self, Vector2(4, 16), sid)
-		globals.output("%s to player" % sid)
-	elif sid and globals.structures.has(sid) and body.collision_mask == 0 and body.get_child_count() < 2:
-		# Allow re-targeting of structure
-		var s = globals.structures[sid]
-		s.targeted = false
-		# Place structure on empty terrain flat
-		s.call_deferred("reparent", self, body.get_parent(), body.position)
-		globals.output("%s from player" % sid)
+	body_entered = body
 
 
 func _on_Player_area_entered(_area):

@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/Player.gd" type="Script" id=2]
 [ext_resource path="res://textures/shaders/explosion.shader" type="Shader" id=3]
 [ext_resource path="res://scenes/StateMachine.tscn" type="PackedScene" id=4]
-[ext_resource path="res://states/player/ps1.gd" type="Script" id=5]
+[ext_resource path="res://states/player/player_active.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30.8808, 13.0854 )
@@ -77,7 +77,7 @@ anims/PlayerTurn = SubResource( 4 )
 
 [node name="States" parent="." instance=ExtResource( 4 )]
 
-[node name="ps1" type="Node" parent="States"]
+[node name="player_active" type="Node" parent="States"]
 script = ExtResource( 5 )
 [connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
