@@ -120,26 +120,6 @@ func add_enemy(target):
 	map.add_enemy(enemy)
 
 
-func _process(delta):
-	process_inputs(delta)
-	move_background(speed * delta)
-	map.position_player(player, scroll_position, terrain)
-	map.update_all_entities(scroll_position)
-
-
-func process_inputs(delta):
-	if Input.is_action_pressed("ui_left"):
-		speed = clamp(speed + THRUST * delta, -MAX_SPEED, MAX_SPEED)
-	if Input.is_action_pressed("ui_right"):
-		speed = clamp(speed - THRUST * delta, -MAX_SPEED, MAX_SPEED)
-	if Input.is_action_pressed("ui_up") and player.position.y > TOP_LEVEL:
-		player.move(0, -delta)
-	if Input.is_action_pressed("ui_down") and player.position.y < terrain.base_level:
-		player.move(0, delta)
-	if Input.is_action_just_pressed("ui_accept"):
-		fire_missile()
-
-
 func fire_missile():
 	var m = missile_scene.instance()
 	terrain.add_child(m)
