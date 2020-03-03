@@ -1,13 +1,16 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Terrain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://states/game/playing_level.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Statistics.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/StateMachine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://textures/shaders/star-sky.shader" type="Shader" id=6]
 [ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Sky.gd" type="Script" id=8]
-[ext_resource path="res://states/game/start_game.gd" type="Script" id=9]
+[ext_resource path="res://states/game/starting_game.gd" type="Script" id=9]
+[ext_resource path="res://states/game/game_over.gd" type="Script" id=10]
+[ext_resource path="res://states/game/end_of_level.gd" type="Script" id=11]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -49,8 +52,17 @@ margin_bottom = 108.0
 
 [node name="States" parent="." instance=ExtResource( 5 )]
 
-[node name="start_game" type="Node" parent="States"]
+[node name="starting_game" type="Node" parent="States"]
 script = ExtResource( 9 )
+
+[node name="playing_level" type="Node" parent="States"]
+script = ExtResource( 3 )
+
+[node name="end_of_level" type="Node" parent="States"]
+script = ExtResource( 11 )
+
+[node name="game_over" type="Node" parent="States"]
+script = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 [connection signal="timeout" from="Spawner" to="." method="_on_Spawner_timeout"]

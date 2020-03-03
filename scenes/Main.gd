@@ -19,7 +19,7 @@ var enemy_scene = preload("res://scenes/Enemy.tscn")
 var missile_scene = preload("res://scenes/Missile.tscn")
 var player_scene = preload("res://scenes/Player.tscn")
 var sky_pos = 0
-var enemies_to_spawn = 0
+var enemies_to_spawn = 10
 var size
 var stats : Statistics
 
@@ -39,8 +39,6 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "resize")
 	resize()
 	map.set_points(terrain)
-	ig(stats.connect("game_over", self, "game_over"))
-	ig(map.connect("end_of_level", self, "increase_level"))
 	print("Ready")
 
 
@@ -55,13 +53,12 @@ func resize():
 
 func add_player():
 	player = player_scene.instance()
-	add_child(player)
 	globals.player = player
-	player.direction = player.RIGHT
 	player.position = Vector2(player.MARGIN, size.y / 2)
-	ig(player.connect("got_hit", stats, "reduce_health"))
-	ig(player.connect("crashed", stats, "lose_life"))
+	globals.ig(player.connect("got_hit", stats, "reduce_health"))
+	globals.ig(player.connect("crashed", stats, "lose_life"))
 	map.add_player(player, scroll_position, terrain)
+	add_child(player)
 
 
 func add_structures():
@@ -74,14 +71,6 @@ func add_structures():
 	map.add_structures()
 	if TEST_STRUCT:
 		add_test_structure()
-
-
-func increase_level():
-	pass
-
-
-func game_over():
-	stats.stop_clock()
 
 
 func add_test_structure():
@@ -135,11 +124,8 @@ func add_enemy(target):
 func _process(delta):
 	process_inputs(delta)
 	move_background(speed * delta)
-	player.turn()
-	player.move_sideways(delta)
 	map.position_player(player, scroll_position, terrain)
 	map.update_all_entities(scroll_position)
-	stats.update()
 
 
 func process_inputs(delta):
@@ -162,12 +148,7 @@ func fire_missile():
 
 
 func move_background(delta):
-	scroll_position = wrapf(scroll_position + delta, 0, terrain.last_point.x)
+	scroll_position = wrapf(scroll_position + delta , 0, terrain.last_point.x)
 	background.scroll_offset.x = scroll_position
 	sky_pos += delta
 	sky.set_offset(sky_pos)
-
-
-func ig(_v):
-	# Ignore return value
-	pass

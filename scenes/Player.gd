@@ -10,9 +10,14 @@ const MARGIN = 128
 
 enum { LEFT, RIGHT }
 
-var direction : int
+var direction = RIGHT
 var sid = 0
 var alive = true
+
+func _process(delta):
+	turn()
+	move_sideways(delta)
+
 
 func _on_Player_body_entered(body):
 	if !sid and body is Structure and body.state == body.states.FALLING:
@@ -35,21 +40,6 @@ func _on_Player_area_entered(_area):
 		emit_signal("got_hit", sid)
 	if _area is Enemy:
 		emit_signal("crashed", sid)
-
-
-func move(dx, dy = 0):
-	var dv = SPEED * Vector2(dx, dy)
-	position += dv
-	if dx != 0: # Need to return value for sideways scroll
-		return dv.x
-
-
-func distance_to_left():
-	return position.x - MARGIN
-
-
-func distance_to_right():
-	return get_viewport_rect().size.x - MARGIN - position.x
 
 
 func explode(respawn):
@@ -85,5 +75,20 @@ func move_sideways(delta):
 		change_position(-delta)
 
 
+func distance_to_left():
+	return position.x - MARGIN
+
+
+func distance_to_right():
+	return get_viewport_rect().size.x - MARGIN - position.x
+
+
 func change_position(delta):
 	globals.game.scroll_position += move(delta)
+
+
+func move(dx, dy = 0):
+	var dv = SPEED * Vector2(dx, dy)
+	position += dv
+	if dx != 0: # Need to return value for sideways scroll
+		return dv.x

@@ -31,3 +31,8 @@ func get_status():
 func output(msg):
 	if OUTPUT:
 		print(msg)
+
+
+func ig(_v):
+	# Ignore return value
+	pass
