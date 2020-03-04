@@ -12,7 +12,8 @@ var sky: GSky
 var terrain : Terrain
 var anim : AnimationPlayer
 var player : Player
-var map: Map
+var map : Map
+var ui : UI
 var scroll_position
 var speed = 0
 var enemy_scene = preload("res://scenes/Enemy.tscn")
@@ -30,6 +31,7 @@ func _ready():
 	anim = $AnimationPlayer
 	map = $Map
 	stats = $Statistics
+	ui = $UI
 	# Allow for renaming of the parallax layer(s) later, so using find_node() and get_parent()
 	terrain = find_node("Terrain")
 	terrain.get_parent().motion_mirroring.x = terrain.last_point.x
@@ -39,6 +41,9 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "resize")
 	resize()
 	map.set_points(terrain)
+	for node in $States.get_children():
+		node.g = self
+	ui.popup_centered()
 
 
 func resize():
@@ -48,6 +53,7 @@ func resize():
 	map.resize(terrain, size.y)
 	map.rect_position.x = (size.x - map.rect_size.x) / 2
 	stats.rect_size.x = size.x
+	ui.rect_position = (size - ui.rect_size) / 2
 
 
 func add_player():

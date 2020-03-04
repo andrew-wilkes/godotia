@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Terrain.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://states/game/starting_game.gd" type="Script" id=9]
 [ext_resource path="res://states/game/game_over.gd" type="Script" id=10]
 [ext_resource path="res://states/game/end_of_level.gd" type="Script" id=11]
+[ext_resource path="res://scenes/UI.tscn" type="PackedScene" id=12]
+[ext_resource path="res://states/game/game_idle.gd" type="Script" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -52,6 +54,9 @@ margin_bottom = 108.0
 
 [node name="States" parent="." instance=ExtResource( 5 )]
 
+[node name="game_idle" type="Node" parent="States"]
+script = ExtResource( 13 )
+
 [node name="starting_game" type="Node" parent="States"]
 script = ExtResource( 9 )
 
@@ -65,4 +70,10 @@ script = ExtResource( 11 )
 script = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="UI" parent="." instance=ExtResource( 12 )]
+margin_left = 443.001
+margin_top = 179.0
+margin_right = 743.001
+margin_bottom = 279.0
 [connection signal="timeout" from="Spawner" to="." method="_on_Spawner_timeout"]

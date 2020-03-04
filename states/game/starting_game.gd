@@ -1,9 +1,10 @@
 extends Node
 
 var fsm: StateMachine
+var g
 
 func enter():
-	globals.game.add_structures()
-	globals.game.stats.reset()
+	g.add_structures()
+	g.stats.reset()
 	print("Game started")
 	fsm.change_to("playing_level")
