@@ -1,6 +1,7 @@
 extends Node
 
 var fsm: StateMachine
+var e : Enemy
 
 func enter():
-	print("Enemy state")
+	e.destroy()

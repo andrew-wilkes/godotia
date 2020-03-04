@@ -2,13 +2,15 @@ extends Node
 
 var fsm: StateMachine
 var g
+var connect = true
 
 func enter():
 	g = globals.game
 	g.add_player()
 	g.spawn_enemy()
-	globals.ig(g.map.connect("end_of_level", self, "increase_level"))
-	globals.ig(g.stats.connect("game_over", self, "game_over"))
+	if connect:
+		connect = g.map.connect("end_of_level", self, "increase_level")
+		connect = g.stats.connect("game_over", self, "game_over")
 
 
 func increase_level():

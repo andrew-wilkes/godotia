@@ -40,5 +40,6 @@ func reparent(caller: Node, dest: Node, pos: Vector2, _sid = 0):
 		globals.output("Reparent: %s to %s" % [caller.sid, dest.name])
 		get_parent().remove_child(self)
 		position = pos
+		#dest.call_deferred("add_child", self)
 		dest.add_child(self)
 		caller.sid = _sid

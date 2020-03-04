@@ -1,7 +1,7 @@
 extends Node
 
 var fsm: StateMachine
-var p
+var p : Player
 
 func enter():
 	print("Player active")

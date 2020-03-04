@@ -4,8 +4,8 @@ const THRUST = 500
 const MAX_SPEED = 500
 const TOP_LEVEL = 14
 const TEST_STRUCT = false
-const TEST_ENEMY = false
-const TEST_TARGET_INDEX = 18
+const TEST_ENEMY = true
+const TEST_TARGET_INDEX = 17
 
 var background : ParallaxBackground
 var sky: GSky
@@ -54,8 +54,8 @@ func add_player():
 	player = player_scene.instance()
 	globals.player = player
 	player.position = Vector2(player.MARGIN, size.y / 2)
-	globals.ig(player.connect("got_hit", stats, "reduce_health"))
-	globals.ig(player.connect("crashed", stats, "lose_life"))
+	var _c = player.connect("got_hit", stats, "reduce_health")
+	_c = player.connect("crashed", stats, "lose_life")
 	map.add_player(player, scroll_position, terrain)
 	add_child(player)
 
@@ -112,8 +112,8 @@ func pick_target():
 
 func add_enemy(target):
 	var enemy = enemy_scene.instance()
-	enemy.target = target.get_parent().position
-	enemy.position = Vector2(enemy.target.x + rand_range(-100, 100), -size.y)
+	enemy.target = { "object": target, "position": target.get_parent().position }
+	enemy.position = Vector2(enemy.target.position.x + rand_range(-100, 100), -size.y)
 	enemy.connect("enemy_killed", stats, "add_points")
 	terrain.line.add_child(enemy)
 	globals.add_entity(enemy, "enemies")
