@@ -60,8 +60,6 @@ func add_player():
 	player = player_scene.instance()
 	globals.player = player
 	player.position = Vector2(player.MARGIN, size.y / 2)
-	var _c = player.connect("got_hit", stats, "reduce_health")
-	_c = player.connect("crashed", stats, "lose_life")
 	map.add_player(player, scroll_position, terrain)
 	add_child(player)
 

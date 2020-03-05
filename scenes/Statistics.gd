@@ -101,17 +101,11 @@ func add_points(points):
 	self.score += points
 
 
-func reduce_health(sid):
+func reduce_health():
 	self.health -= 1
-	if health <= 0:
-		lose_life(sid)
+	return health
 
 
-func lose_life(sid):
+func lose_life():
 	self.lives -= 1
-	var respawn = self.lives > 0
-	globals.player.explode(respawn)
-	if sid and globals.structures.has(sid):
-			globals.structures[sid].destroy()
-	if !respawn:
-		emit_signal("game_over")
+	return lives

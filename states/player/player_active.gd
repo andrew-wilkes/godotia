@@ -2,10 +2,13 @@ extends Node
 
 var fsm: StateMachine
 var p : Player
+var connect = true
 
 func enter():
 	print("Player active")
-	p = globals.player
+	if connect:
+		connect = p.connect("got_hit", self, "got_hit")
+		connect = p.connect("crashed", self, "crashed")
 
 
 func process(_delta):
@@ -32,3 +35,11 @@ func try_to_catch_stucture():
 		p.body_entered.state = p.body_entered.states.STATIC
 		p.body_entered.reparent(p, p, Vector2(4, 16), p.sid)
 		globals.output("%s to player" % p.sid)
+
+
+func got_hit():
+	fsm.change_to("player_hit")
+
+
+func crashed():
+	fsm.change_to("player_explode")

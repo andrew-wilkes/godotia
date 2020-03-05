@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://textures/plane.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.gd" type="Script" id=2]
 [ext_resource path="res://textures/shaders/explosion.shader" type="Shader" id=3]
 [ext_resource path="res://scenes/StateMachine.tscn" type="PackedScene" id=4]
 [ext_resource path="res://states/player/player_active.gd" type="Script" id=5]
+[ext_resource path="res://states/player/player_explode.gd" type="Script" id=6]
+[ext_resource path="res://states/player/player_hit.gd" type="Script" id=7]
+[ext_resource path="res://states/player/player_lose_life.gd" type="Script" id=8]
+[ext_resource path="res://states/player/player_respawn.gd" type="Script" id=9]
+[ext_resource path="res://states/player/player_dead.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30.8808, 13.0854 )
@@ -79,6 +84,20 @@ anims/PlayerTurn = SubResource( 4 )
 
 [node name="player_active" type="Node" parent="States"]
 script = ExtResource( 5 )
+
+[node name="player_hit" type="Node" parent="States"]
+script = ExtResource( 7 )
+
+[node name="player_explode" type="Node" parent="States"]
+script = ExtResource( 6 )
+
+[node name="player_lose_life" type="Node" parent="States"]
+script = ExtResource( 8 )
+
+[node name="player_respawn" type="Node" parent="States"]
+script = ExtResource( 9 )
+
+[node name="player_dead" type="Node" parent="States"]
+script = ExtResource( 10 )
 [connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

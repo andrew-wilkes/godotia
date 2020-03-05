@@ -2,8 +2,9 @@ extends Area2D
 
 class_name Player
 
-signal got_hit(sid)
-signal crashed(sid)
+signal got_hit
+signal crashed
+signal killed
 
 const SPEED = Vector2(500, 500)
 const MARGIN = 128
@@ -14,6 +15,11 @@ var direction = RIGHT
 var sid = 0
 var alive = true
 var body_entered
+
+func _ready():
+	for node in $States.get_children():
+		node.p = self
+
 
 func _process(delta):
 	turn()
@@ -26,14 +32,9 @@ func _on_Player_body_entered(body):
 
 func _on_Player_area_entered(_area):
 	if _area is Shot:
-		emit_signal("got_hit", sid)
+		emit_signal("got_hit")
 	if _area is Enemy:
-		emit_signal("crashed", sid)
-
-
-func explode(respawn):
-	alive = respawn
-	$AnimationPlayer.play("Explosion")
+		emit_signal("crashed")
 
 
 func respawn():
@@ -41,9 +42,9 @@ func respawn():
 	$Sprite.modulate.a = 1.0
 
 
-func _on_AnimationPlayer_animation_finished(_anim_name):
-	if alive:
-		respawn()
+func kill():
+	queue_free()
+	emit_signal("killed")
 
 
 func turn():

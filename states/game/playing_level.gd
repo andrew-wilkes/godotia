@@ -6,11 +6,11 @@ var connect = true
 
 func enter():
 	g = globals.game
-	g.add_player()
 	g.spawn_enemy()
 	if connect:
 		connect = g.map.connect("end_of_level", self, "increase_level")
 		connect = g.stats.connect("game_over", self, "game_over")
+		connect = g.player.connect("killed", self, "game_over")
 
 
 func increase_level():
@@ -27,6 +27,8 @@ func process(delta):
 	g.map.position_player(g.player, g.scroll_position, g.terrain)
 	g.map.update_all_entities(g.scroll_position)
 	process_inputs(delta)
+	if g.stats.lives <= 0:
+		game_over()
 
 
 func process_inputs(delta):
