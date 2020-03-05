@@ -4,6 +4,7 @@ var fsm: StateMachine
 var g
 
 func enter():
+	
 	g.add_structures()
 	g.stats.reset()
 	g.add_player()
