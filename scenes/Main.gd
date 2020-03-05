@@ -4,7 +4,7 @@ const THRUST = 500
 const MAX_SPEED = 500
 const TOP_LEVEL = 14
 const TEST_STRUCT = false
-const TEST_ENEMY = true
+const TEST_ENEMY = false
 const TEST_TARGET_INDEX = 17
 
 var background : ParallaxBackground

@@ -4,10 +4,10 @@ var fsm: StateMachine
 var p : Player
 var connect = true
 var anim : AnimationPlayer
-var valid
+var count
 
 func enter():
-	valid = true
+	count = 0
 	print("Player explode")
 	anim = p.get_node("AnimationPlayer")
 	if connect:
@@ -16,7 +16,6 @@ func enter():
 
 
 func animation_finished(_anim_name):
-	#BUG Seems to get called twice
-	if valid:
+	count += 1
+	if count == 1:
 		fsm.change_to("player_lose_life")
-		valid = false
