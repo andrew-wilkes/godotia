@@ -18,7 +18,7 @@ func process(delta):
 
 func move_to_target(delta):
 	e.move(delta)
-	if e.body_entered:
+	if e.body_entered == e.target.object:
 		e.sid = e.body_entered.get_instance_id()
 		match e.body_entered.TYPE:
 			"Building":
