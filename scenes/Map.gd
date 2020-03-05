@@ -60,7 +60,7 @@ func update_entities(entities, scroll_position):
 			globals.get(entities).erase(id)
 
 
-func update_all_entities(scroll_position):
+func update_all_entities(scroll_position = 0):
 	update_entities("structures", scroll_position)
 	update_entities("enemies", scroll_position)
 	if enemies.get_child_count() < 1:
