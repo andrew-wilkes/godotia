@@ -43,7 +43,7 @@ func _ready():
 	map.set_points(terrain)
 	for node in $States.get_children():
 		node.g = self
-	ui.popup_centered()
+	ui.pop_up_with_text()
 
 
 func resize():

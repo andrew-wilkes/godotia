@@ -14,4 +14,5 @@ func enter():
 	g.stats.reset()
 	g.add_player()
 	print("Game started")
+	#fsm.change_to("game_over")
 	fsm.change_to("playing_level")

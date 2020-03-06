@@ -20,11 +20,11 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
-margin_bottom = 108.0
+margin_bottom = 95.0
 
 [node name="Left" type="VBoxContainer" parent="HBox"]
 margin_right = 200.0
-margin_bottom = 98.0
+margin_bottom = 85.0
 rect_min_size = Vector2( 200, 0 )
 custom_constants/separation = 10
 
@@ -52,20 +52,6 @@ margin_bottom = 13.0
 texture = ExtResource( 1 )
 stretch_mode = 1
 
-[node name="TextureRect4" type="TextureRect" parent="HBox/Left/Lives"]
-margin_left = 108.0
-margin_right = 140.0
-margin_bottom = 13.0
-texture = ExtResource( 1 )
-stretch_mode = 1
-
-[node name="TextureRect5" type="TextureRect" parent="HBox/Left/Lives"]
-margin_left = 144.0
-margin_right = 176.0
-margin_bottom = 13.0
-texture = ExtResource( 1 )
-stretch_mode = 1
-
 [node name="Health" type="ProgressBar" parent="HBox/Left"]
 margin_top = 23.0
 margin_right = 200.0
@@ -87,14 +73,14 @@ text = "Score: 888888"
 [node name="ColorRect" type="ColorRect" parent="HBox"]
 margin_left = 204.0
 margin_right = 800.0
-margin_bottom = 98.0
+margin_bottom = 85.0
 size_flags_horizontal = 3
 color = Color( 1, 1, 1, 0 )
 
 [node name="Right" type="VBoxContainer" parent="HBox"]
 margin_left = 804.0
 margin_right = 1004.0
-margin_bottom = 98.0
+margin_bottom = 85.0
 rect_min_size = Vector2( 200, 0 )
 custom_constants/separation = 10
 
