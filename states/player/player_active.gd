@@ -29,6 +29,7 @@ func try_to_place_stucture():
 		s.targeted = false
 		s.reparent(p, p.body_entered.get_parent(), p.body_entered.position)
 		globals.output("%s from player" % p.sid)
+		p.get_node("Action").play()
 
 
 func try_to_catch_stucture():
@@ -37,6 +38,7 @@ func try_to_catch_stucture():
 		p.body_entered.state = p.body_entered.states.STATIC
 		p.body_entered.reparent(p, p, Vector2(4, 16), p.sid)
 		globals.output("%s to player" % p.sid)
+		p.get_node("Buzz").play()
 
 
 func got_hit():

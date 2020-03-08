@@ -10,6 +10,7 @@ func enter():
 	if connect:
 		connect = e.anim.connect("animation_finished", self, "animation_finished")
 	e.anim.play("Explosion")
+	e.get_node("Explode").play()
 
 
 func animation_finished(_anim_name):

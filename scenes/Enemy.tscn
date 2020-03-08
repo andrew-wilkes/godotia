@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://textures/ufo-16.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Enemy.gd" type="Script" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://states/enemy/enemy_idle.gd" type="Script" id=9]
 [ext_resource path="res://textures/shaders/explosion.shader" type="Shader" id=10]
 [ext_resource path="res://states/enemy/enemy_explode.gd" type="Script" id=11]
+[ext_resource path="res://audio/blip.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/zzz.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/waw.ogg" type="AudioStream" id=14]
+[ext_resource path="res://audio/wawlow.ogg" type="AudioStream" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.47765, 5.02196 )
@@ -89,5 +93,21 @@ script = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Explosion = SubResource( 3 )
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+attenuation = 0.0441942
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
+attenuation = 0.0669858
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+attenuation = 0.0669858
+
+[node name="Action" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+attenuation = 0.0669858
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Enemy_body_entered"]

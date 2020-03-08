@@ -55,6 +55,7 @@ func fire():
 		shot.position = position
 		shot.direction = (target.position - position).normalized()
 		get_parent().add_child(shot)
+		get_node("Fire").play()
 		$ShotTimer.start(rand_range(globals.shots.fire_delay1, globals.shots.fire_delay2))
 
 

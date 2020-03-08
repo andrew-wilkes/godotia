@@ -37,6 +37,7 @@ func _physics_process(delta):
 func destroy():
 	state = states.STATIC
 	$AnimationPlayer.play("Explosion")
+	$Splat.play()
 
 
 func reparent(caller: Node, dest: Node, pos: Vector2, _sid = 0):

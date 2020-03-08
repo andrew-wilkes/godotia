@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://textures/plane.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.gd" type="Script" id=2]
@@ -11,7 +11,9 @@
 [ext_resource path="res://states/player/player_respawn.gd" type="Script" id=9]
 [ext_resource path="res://states/player/player_dead.gd" type="Script" id=10]
 [ext_resource path="res://audio/warp.ogg" type="AudioStream" id=11]
-[ext_resource path="res://audio/shot.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/buzz.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/dadida.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/blip.wav" type="AudioStream" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30.8808, 13.0854 )
@@ -107,6 +109,12 @@ script = ExtResource( 10 )
 stream = ExtResource( 11 )
 
 [node name="Fire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Action" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="Buzz" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 [connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

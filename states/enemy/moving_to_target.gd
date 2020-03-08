@@ -4,7 +4,7 @@ var fsm: StateMachine
 var e : Enemy
 
 func enter():
-	pass
+	e.get_node("Spawn").play()
 
 
 func process(delta):
@@ -19,6 +19,7 @@ func process(delta):
 func move_to_target(delta):
 	e.move(delta)
 	if e.body_entered == e.target.object:
+		e.get_node("Action").play()
 		e.sid = e.body_entered.get_instance_id()
 		match e.body_entered.TYPE:
 			"Building":

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://textures/shaders/explosion.shader" type="Shader" id=1]
 [ext_resource path="res://textures/structures/aparto.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Structure.gd" type="Script" id=3]
+[ext_resource path="res://audio/zzz.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -44,4 +45,7 @@ texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Explosion = SubResource( 3 )
+
+[node name="Splat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
