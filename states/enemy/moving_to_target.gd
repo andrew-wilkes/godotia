@@ -11,7 +11,7 @@ func process(delta):
 	if e.area_entered:
 		e.target.object.targeted = false
 		e.emit_killed(e.POINTS)
-		fsm.change_to("enemy_dead")
+		fsm.change_to("enemy_explode")
 	else:
 		move_to_target(delta)
 

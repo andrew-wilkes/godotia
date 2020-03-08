@@ -12,7 +12,7 @@ func process(delta):
 		e.target.object.targeted = false
 		e.target.object.charging = true
 		e.emit_killed(e.POINTS)
-		fsm.change_to("enemy_dead")
+		fsm.change_to("enemy_explode")
 	elif e.target.object.get_energy_all_got(e.RATE_OF_DRAINING_ENERGY * delta):
 		e.target.object.targeted = false
 		e.sid = 0

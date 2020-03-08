@@ -25,6 +25,10 @@ func _ready():
 	for node in $States.get_children():
 		node.e = self
 	anim = $AnimationPlayer
+	# Make shader material unique
+	# https://godotengine.org/qa/2866/how-do-i-make-material-shader-instances-2d
+	var mat = get_node("Sprite").get_material().duplicate(true)
+	get_node("Sprite").set_material(mat)
 
 
 func move(delta):

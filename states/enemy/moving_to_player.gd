@@ -10,7 +10,7 @@ func enter():
 func process(delta):
 	if e.area_entered:
 		e.emit_killed(e.BONUS_POINTS)
-		fsm.change_to("enemy_dead")
+		fsm.change_to("enemy_explode")
 	else:
 		hunt_player(delta)
 
