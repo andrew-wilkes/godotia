@@ -9,6 +9,8 @@ func enter():
 	if connect:
 		connect = p.connect("got_hit", self, "got_hit")
 		connect = p.connect("crashed", self, "crashed")
+	p.get_node("Spawn").play()
+	p.anim.play_backwards("Explosion")
 
 
 func process(_delta):

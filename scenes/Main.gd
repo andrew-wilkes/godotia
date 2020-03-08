@@ -128,6 +128,7 @@ func fire_missile():
 	var m = missile_scene.instance()
 	terrain.add_child(m)
 	m.start(terrain, scroll_position, speed, terrain.last_point.x)
+	player.get_node("Fire").play()
 
 
 func move_background(delta):
