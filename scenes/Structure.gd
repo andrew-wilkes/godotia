@@ -14,6 +14,10 @@ var velocity = Vector2(0, 0)
 var state = states.STATIC
 var targeted = false
 
+func _ready():
+	var mat = get_node("Sprite").get_material().duplicate(true)
+	get_node("Sprite").set_material(mat)
+
 
 func _physics_process(delta):
 	if state == states.FALLING:
@@ -32,7 +36,7 @@ func _physics_process(delta):
 
 func destroy():
 	state = states.STATIC
-	visible = false
+	$AnimationPlayer.play("Explosion")
 
 
 func reparent(caller: Node, dest: Node, pos: Vector2, _sid = 0):
@@ -43,3 +47,7 @@ func reparent(caller: Node, dest: Node, pos: Vector2, _sid = 0):
 		#dest.call_deferred("add_child", self)
 		dest.add_child(self)
 		caller.sid = _sid
+
+
+func _on_AnimationPlayer_animation_finished(_anim_name):
+	visible = false

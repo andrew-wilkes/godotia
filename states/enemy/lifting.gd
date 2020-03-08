@@ -13,7 +13,7 @@ func process(delta):
 		if e.sid:
 			e.got_building()
 			e.sid = 0
-		fsm.change_to("enemy_explode")
+		fsm.change_to("enemy_dead")
 	elif e.area_entered:
 		# Move building parent from enemy to terrain and make it fall
 		var s = globals.structures[e.sid]
