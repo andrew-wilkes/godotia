@@ -15,10 +15,12 @@ var direction = RIGHT
 var sid = 0
 var alive = true
 var body_entered
+var anim
 
 func _ready():
 	for node in $States.get_children():
 		node.p = self
+	anim = $AnimationPlayer
 
 
 func _process(delta):
@@ -50,11 +52,11 @@ func kill():
 func turn():
 	if direction == RIGHT and globals.game.speed > 0:
 		direction = LEFT
-		$AnimationPlayer.play("PlayerTurn")
+		anim.play("PlayerTurn")
 		globals.game.map.turn_player()
 	if direction == LEFT and globals.game.speed < 0:
 		direction = RIGHT
-		$AnimationPlayer.play_backwards("PlayerTurn")
+		anim.play_backwards("PlayerTurn")
 		globals.game.map.turn_player()
 
 

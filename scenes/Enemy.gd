@@ -18,11 +18,13 @@ var shot_scene = preload("res://scenes/Shot.tscn")
 var shot_range_squared : float
 var body_entered
 var area_entered
+var anim
 
 func _ready():
 	shot_range_squared = pow(rand_range(globals.shots.range1, globals.shots.range2), 2)
 	for node in $States.get_children():
 		node.e = self
+	anim = $AnimationPlayer
 
 
 func move(delta):

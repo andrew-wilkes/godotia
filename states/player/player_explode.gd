@@ -3,16 +3,14 @@ extends Node
 var fsm: StateMachine
 var p : Player
 var connect = true
-var anim : AnimationPlayer
 var count
 
 func enter():
 	count = 0
 	print("Player explode")
-	anim = p.get_node("AnimationPlayer")
 	if connect:
-		connect = anim.connect("animation_finished", self, "animation_finished")
-	anim.play("Explosion")
+		connect = p.anim.connect("animation_finished", self, "animation_finished")
+	p.anim.play("Explosion")
 
 
 func animation_finished(_anim_name):
