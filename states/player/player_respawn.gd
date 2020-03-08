@@ -5,5 +5,5 @@ var p : Player
 
 func enter():
 	print("Player respawn")
-	p.respawn()
+	p.spawn()
 	fsm.change_to("player_active")

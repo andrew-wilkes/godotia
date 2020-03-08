@@ -8,4 +8,5 @@ func enter():
 	if globals.game.stats.reduce_health() <= 0:
 		fsm.change_to("player_explode")
 	else:
+		p.get_node("Buzz").play()
 		fsm.change_to("player_active")

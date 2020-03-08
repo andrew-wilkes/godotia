@@ -21,6 +21,7 @@ func _ready():
 	for node in $States.get_children():
 		node.p = self
 	anim = $AnimationPlayer
+	spawn()
 
 
 func _process(delta):
@@ -39,9 +40,9 @@ func _on_Player_area_entered(_area):
 		emit_signal("crashed")
 
 
-func respawn():
-	$Sprite.material.set_shader_param("multiplier", 0)
-	$Sprite.modulate.a = 1.0
+func spawn():
+	$Spawn.play()
+	anim.play_backwards("Explosion")
 
 
 func kill():
