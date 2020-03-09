@@ -25,7 +25,7 @@ func try_to_place_stucture():
 	if p.body_entered.collision_mask == 0 and p.body_entered.get_child_count() < 2:
 		var s = globals.structures[p.sid]
 		s.targeted = false
-		s.reparent(p, p.body_entered.get_parent(), p.body_entered.position)
+		s.reparent(p, p.body_entered, Vector2(0, 0))
 		globals.output("%s from player" % p.sid)
 		p.get_node("Action").play()
 
