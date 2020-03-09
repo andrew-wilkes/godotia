@@ -9,7 +9,6 @@ func enter():
 	# Freeze enemy activity
 	for e in globals.enemies.values():
 		e.get_node("States").change_to("enemy_idle")
-	g.player.spawn() # Make sure size is reset
 	g.player.queue_free()
 	g.map.player.queue_free()
 	print("Game over")
