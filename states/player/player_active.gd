@@ -6,6 +6,7 @@ var connect = true
 
 func enter():
 	print("Player active")
+	p.reset_size()
 	if connect:
 		connect = p.connect("got_hit", self, "got_hit")
 		connect = p.connect("crashed", self, "crashed")

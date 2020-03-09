@@ -14,7 +14,7 @@ func enter():
 
 
 func animation_finished(_anim_name):
-	p.get_node("Sprite").get_material().set_shader_param("multiplier", 0) # Reset size
+	p.reset_size()
 	count += 1
 	if count == 1:
 		fsm.change_to("player_lose_life")
