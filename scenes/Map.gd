@@ -9,14 +9,14 @@ const ITEM_SCALE = Vector2(SCALE, SCALE)
 
 var coor_scale : Vector2
 var line: Line2D
-var structures
-var enemies
+var entities
 var player
+var nodes = []
+var new_nodes = []
 
 func _ready():
 	line = $Line2D
-	structures = $Structures
-	enemies = $Enemies
+	entities = $Entities
 
 
 func set_points(terrain: Terrain):
@@ -31,40 +31,48 @@ func resize(terrain: Terrain, y_size):
 	set_points(terrain)
 
 
-func add_structures():
+func add_entity(e):
 	# Don't care about the position here
-	for s in globals.structures.values():
-		var node = s.get_node("Sprite").duplicate()
-		node.name = str(s.get_instance_id())
-		node.scale = ITEM_SCALE
-		structures.add_child(node)
-
-
-func add_enemy(e):
 	var node = e.get_node("Sprite").duplicate()
-	node.name = str(e.get_instance_id())
+	node.name = get_id(e)
 	node.scale = ITEM_SCALE
-	enemies.add_child(node)
+	entities.add_child(node)
+	nodes.append(node.name)
 
 
-func update_entities(entities, scroll_position):
-	for e in get(entities).get_children():
-		var id = int(e.name)
-		if globals.get(entities)[id].visible:
-			var node = globals.get(entities)[id]
-			e.position = get_node_position(node, scroll_position)
-			e.modulate = node.modulate
-		else:
-			e.queue_free()
-			globals.get(entities)[id].queue_free()
-			globals.get(entities).erase(id)
+func remove_entities():
+	for e in entities.get_children():
+		e.queue_free()
+
+
+func update_entities(e_array, scroll_position):
+	for e in e_array:
+		var map_node = entities.get_child(nodes.find(get_id(e)))
+		# Record the existing entity id
+		new_nodes.append(get_id(e))
+		map_node.position = get_node_position(e, scroll_position)
+		map_node.modulate = e.modulate
+
+
+func get_id(node):
+	return str(node.get_instance_id())
 
 
 func update_all_entities(scroll_position = 0):
-	update_entities("structures", scroll_position)
-	update_entities("enemies", scroll_position)
-	if enemies.get_child_count() < 1:
-		emit_signal("end_of_level")
+	new_nodes = []
+	update_entities(get_tree().get_nodes_in_group("building"), scroll_position)
+	update_entities(get_tree().get_nodes_in_group("energy_source"), scroll_position)
+	#update_entities("enemies", scroll_position)
+	nodes = new_nodes
+	clean_entities()
+	#if enemies.get_child_count() < 1:
+	#	emit_signal("end_of_level")
+
+
+func clean_entities():
+	for node in entities.get_children():
+		if !nodes.has(node.name):
+			node.queue_free()
 
 
 func get_node_position(node, offset):

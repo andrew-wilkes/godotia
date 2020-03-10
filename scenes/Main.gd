@@ -69,9 +69,9 @@ func add_structures():
 	var nodes = terrain.get_nodes_for_structures(Structures.DENSITY)
 	for node in nodes:
 		var structure = Structures.generate()
-		globals.add_entity(structure, "structures")
 		node.add_child(structure)
-	map.add_structures()
+		structure.add_to_group(structure.tag)
+		map.add_entity(structure)
 	if TEST_STRUCT:
 		add_test_structure()
 
@@ -81,7 +81,7 @@ func add_test_structure():
 	var structure = Structures.generate()
 	structure.position = Vector2(scroll_position + 50, -80)
 	structure.state = 1
-	terrain.line.add_child(structure)
+	terrain.line.add_child(structure) # Usually add to a Flat
 
 
 func spawn_enemy():
@@ -101,15 +101,18 @@ func _on_Spawner_timeout():
 func pick_target():
 	var targets = []
 	# Get all untargeted structures
-	for i in globals.structures.keys():
-		if !globals.structures[i].targeted:
-			targets.append(i)
+	for node in get_tree().get_nodes_in_group("building"):
+		if !node.targeted:
+			targets.append(node)
+	for node in get_tree().get_nodes_in_group("energy_source"):
+		if !node.targeted:
+			targets.append(node)
 	var pick = false
 	if targets.size():
 		var i = randi() % targets.size()
 		if TEST_ENEMY:
 			i = TEST_TARGET_INDEX # Manually choose a target
-		pick = globals.structures[targets[i]]
+		pick = targets[i]
 	pick.targeted = true
 	return pick
 
@@ -121,7 +124,7 @@ func add_enemy(target):
 	enemy.connect("enemy_killed", stats, "add_points")
 	terrain.line.add_child(enemy)
 	globals.add_entity(enemy, "enemies")
-	map.add_enemy(enemy)
+	map.add_entity(enemy)
 
 
 func fire_missile():

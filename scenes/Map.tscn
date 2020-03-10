@@ -23,6 +23,4 @@ points = PoolVector2Array( 0, 0 )
 width = 1.0
 default_color = Color( 0.00784314, 0.764706, 0, 1 )
 
-[node name="Structures" type="Node2D" parent="."]
-
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Entities" type="Node2D" parent="."]
