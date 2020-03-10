@@ -1,7 +1,6 @@
 extends Structure
 
-const TYPE = "EnergySource"
-
+const tag = "energy_source"
 const CHARGING_RATE = 30
 
 export(float, EXP, 0, 10000, 10) var max_energy = 100 setget set_max_energy

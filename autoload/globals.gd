@@ -21,10 +21,11 @@ func get_status():
 	var pop = 0
 	var energy = 0
 	for s in structures.values():
-		if s.TYPE == "Building":
-			pop += s.population
-		else:
-			energy += s.energy
+		match s.tag:
+			"building":
+				pop += s.population
+			"energy_source":
+				energy += s.energy
 	return { p = pop, e = energy }
 
 
