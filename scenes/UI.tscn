@@ -60,5 +60,9 @@ text = "QUIT"
 [node name="Tween1" type="Tween" parent="."]
 
 [node name="Tween2" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 [connection signal="button_down" from="VBoxContainer/Buttons/PlayButton" to="." method="_on_PlayButton_button_down"]
 [connection signal="button_down" from="VBoxContainer/Buttons/ExitButton" to="." method="_on_ExitButton_button_down"]
+[connection signal="timeout" from="Timer" to="." method="disable_play_button"]

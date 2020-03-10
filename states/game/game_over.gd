@@ -12,4 +12,4 @@ func enter():
 	g.player.queue_free()
 	g.map.player.queue_free()
 	print("Game over")
-	g.ui.pop_up_with_text("GAME OVER")
+	g.ui.pop_up_with_text("GAME OVER", true)
