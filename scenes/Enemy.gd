@@ -4,14 +4,11 @@ class_name Enemy
 
 signal enemy_killed(points)
 
-enum { MOVING_TO_TARGET, DRAINING_ENERGY, MOVING_TO_PLAYER, LIFTING, DEAD }
-
 const SPEED = 100
 const RATE_OF_DRAINING_ENERGY = 100
 const POINTS = 10
 const BONUS_POINTS = 50
 
-var state = MOVING_TO_TARGET
 var target = {}
 var payload : Structure
 var shot_scene = preload("res://scenes/Shot.tscn")
@@ -61,3 +58,7 @@ func got_building():
 
 func emit_killed(points):
 	emit_signal("enemy_killed", points)
+
+
+func become_idle():
+	$States.change_to("enemy_idle")
