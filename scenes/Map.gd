@@ -62,11 +62,12 @@ func update_all_entities(scroll_position = 0):
 	new_nodes = []
 	update_entities(get_tree().get_nodes_in_group("building"), scroll_position)
 	update_entities(get_tree().get_nodes_in_group("energy_source"), scroll_position)
-	#update_entities("enemies", scroll_position)
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	update_entities(enemies, scroll_position)
 	nodes = new_nodes
 	clean_entities()
-	#if enemies.get_child_count() < 1:
-	#	emit_signal("end_of_level")
+	if enemies.size() < 1:
+		emit_signal("end_of_level")
 
 
 func clean_entities():

@@ -4,7 +4,7 @@ const THRUST = 500
 const MAX_SPEED = 500
 const TOP_LEVEL = 14
 const TEST_STRUCT = false
-const TEST_ENEMY = true
+const TEST_ENEMY = false
 const TEST_TARGET_INDEX = 17
 
 var background : ParallaxBackground
@@ -123,7 +123,7 @@ func add_enemy(target):
 	enemy.position = Vector2(enemy.target.position.x + rand_range(-100, 100), -size.y)
 	enemy.connect("enemy_killed", stats, "add_points")
 	terrain.line.add_child(enemy)
-	globals.add_entity(enemy, "enemies")
+	enemy.add_to_group("enemies")
 	map.add_entity(enemy)
 
 

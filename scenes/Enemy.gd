@@ -13,7 +13,7 @@ const BONUS_POINTS = 50
 
 var state = MOVING_TO_TARGET
 var target = {}
-var sid = 0
+var payload : Structure
 var shot_scene = preload("res://scenes/Shot.tscn")
 var shot_range_squared : float
 var body_entered
@@ -40,10 +40,6 @@ func _on_Enemy_area_entered(area):
 	area_entered = area
 
 
-func destroy():
-	visible = false
-
-
 func _on_Enemy_body_entered(body):
 	if body is Structure:
 		body_entered = body
@@ -60,7 +56,6 @@ func fire():
 
 
 func got_building():
-	globals.structures[sid].visible = false
 	globals.output("Got_building")
 
 

@@ -5,8 +5,7 @@ var g
 
 func enter():
 	# Remove existing entities
-	for e in globals.enemies.values():
-		e.visible = false
+	get_tree().call_group("enemies", "queue_free")
 	get_tree().call_group("building", "queue_free")
 	get_tree().call_group("energy_source", "queue_free")
 	yield(get_tree(), "idle_frame")

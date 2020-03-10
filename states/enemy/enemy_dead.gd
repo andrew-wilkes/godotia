@@ -4,4 +4,4 @@ var fsm: StateMachine
 var e : Enemy
 
 func enter():
-	e.destroy()
+	e.queue_free()

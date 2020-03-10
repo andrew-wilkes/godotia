@@ -4,7 +4,6 @@ const OUTPUT = true
 
 var game
 var player
-var enemies = {}
 var shots = {
 	"range1": 200,
 	"range2": 500,

@@ -14,7 +14,7 @@ func enter():
 
 func process(_delta):
 	if p.body_entered:
-		if p.sid:
+		if p.payload:
 			try_to_place_stucture()
 		else:
 			try_to_catch_stucture()
@@ -24,19 +24,20 @@ func process(_delta):
 func try_to_place_stucture():
 	# Check if it's an unoccupied terrain flat
 	if p.body_entered.collision_mask == 0 and p.body_entered.get_child_count() < 2:
-		var s = globals.structures[p.sid]
+		var s = p.payload
 		s.targeted = false
-		s.reparent(p, p.body_entered, Vector2(0, 0))
-		globals.output("%s from player" % p.sid)
+		s.reparent(p.body_entered, Vector2(0, 0))
+		p.payload = null
+		globals.output("Player placed %s" % s.get_instance_id())
 		p.get_node("Action").play()
 
 
 func try_to_catch_stucture():
 	if  p.body_entered is Structure and p.body_entered.state == p.body_entered.states.FALLING:
-		p.sid = p.body_entered.get_instance_id()
-		p.body_entered.state = p.body_entered.states.STATIC
-		p.body_entered.reparent(p, p, Vector2(4, 16), p.sid)
-		globals.output("%s to player" % p.sid)
+		p.payload = p.body_entered
+		p.payload.state = p.payload.states.STATIC
+		p.payload.reparent(p, Vector2(4, 16))
+		globals.output("%s to player" % p.payload.get_instance_id())
 		p.get_node("Buzz").play()
 
 

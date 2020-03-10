@@ -40,14 +40,12 @@ func destroy():
 	$Splat.play()
 
 
-func reparent(caller: Node, dest: Node, pos: Vector2, _sid = 0):
+func reparent(dest: Node, pos: Vector2):
 	if get_parent() != dest:
-		globals.output("Reparent: %s to %s" % [caller.sid, dest.name])
+		globals.output("Reparent: %s to %s" % [get_parent().get_instance_id(), dest.name])
 		get_parent().remove_child(self)
 		position = pos
-		#dest.call_deferred("add_child", self)
 		dest.add_child(self)
-		caller.sid = _sid
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name):

@@ -12,7 +12,7 @@ const MARGIN = 128
 enum { LEFT, RIGHT }
 
 var direction = RIGHT
-var sid = 0
+var payload : Structure
 var alive = true
 var body_entered
 var anim
