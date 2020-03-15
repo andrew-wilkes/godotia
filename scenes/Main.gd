@@ -6,6 +6,8 @@ const TOP_LEVEL = 14
 const TEST_STRUCT = false
 const TEST_ENEMY = false
 const TEST_TARGET_INDEX = 17
+const FILE_NAME = "user://high-score.save"
+const PASSWORD = "dfdfhdfbh"
 
 var background : ParallaxBackground
 var sky: GSky
@@ -139,3 +141,17 @@ func move_background(delta):
 	background.scroll_offset.x = scroll_position
 	sky_pos += delta
 	sky.set_offset(sky_pos)
+
+
+func save_high_score():
+	var file = File.new()
+	file.open_encrypted_with_pass(FILE_NAME, File.WRITE, PASSWORD)
+	file.store_var(stats.hscore)
+	file.close()
+
+
+func load_high_score():
+	var file = File.new()
+	if file.file_exists(FILE_NAME):
+		file.open_encrypted_with_pass(FILE_NAME, File.READ, PASSWORD)
+		stats.hscore = file.get_var()

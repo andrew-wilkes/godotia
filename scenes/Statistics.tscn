@@ -20,11 +20,11 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
-margin_bottom = 95.0
+margin_bottom = 119.0
 
 [node name="Left" type="VBoxContainer" parent="HBox"]
 margin_right = 200.0
-margin_bottom = 85.0
+margin_bottom = 109.0
 rect_min_size = Vector2( 200, 0 )
 custom_constants/separation = 10
 
@@ -70,17 +70,23 @@ margin_right = 200.0
 margin_bottom = 85.0
 text = "Score: 888888"
 
+[node name="HScore" type="Label" parent="HBox/Left"]
+margin_top = 95.0
+margin_right = 200.0
+margin_bottom = 109.0
+text = "HScore: 888888"
+
 [node name="ColorRect" type="ColorRect" parent="HBox"]
 margin_left = 204.0
 margin_right = 800.0
-margin_bottom = 85.0
+margin_bottom = 109.0
 size_flags_horizontal = 3
 color = Color( 1, 1, 1, 0 )
 
 [node name="Right" type="VBoxContainer" parent="HBox"]
 margin_left = 804.0
 margin_right = 1004.0
-margin_bottom = 85.0
+margin_bottom = 109.0
 rect_min_size = Vector2( 200, 0 )
 custom_constants/separation = 10
 

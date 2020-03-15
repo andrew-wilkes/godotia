@@ -12,3 +12,4 @@ func enter():
 	g.map.player.queue_free()
 	print("Game over")
 	g.ui.pop_up_with_text("GAME OVER", true)
+	g.save_high_score()

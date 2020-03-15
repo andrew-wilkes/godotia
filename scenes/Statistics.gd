@@ -8,6 +8,7 @@ var lives setget _lives
 var health setget _health
 var level setget _level
 var score setget _score
+var hscore = 0
 var population setget _population
 var time setget _time
 var energy setget _energy
@@ -20,6 +21,7 @@ func _ready():
 		health = $HBox/Left/Health,
 		level = $HBox/Left/Level,
 		score = $HBox/Left/Score,
+		hscore = $HBox/Left/HScore,
 		population = $HBox/Right/Pop,
 		time = $HBox/Right/Time,
 		energy = $HBox/Right/Energy
@@ -63,6 +65,9 @@ func _level(n):
 func _score(n):
 	score = n
 	nodes.score.text = "Score: %05d" % n
+	if score > hscore:
+		hscore = score
+	nodes.hscore.text = "HScore: %05d" % hscore
 
 
 func _population(n):
