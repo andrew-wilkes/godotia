@@ -41,4 +41,7 @@ func process_inputs(delta):
 	if Input.is_action_pressed("ui_down") and g.player.position.y < g.terrain.base_level:
 		g.player.move(0, delta)
 	if Input.is_action_just_pressed("ui_accept"):
-		g.fire_missile()
+		if randf() > 0.8:
+			g.fire_missile()
+		else:
+			g.fire_beam()

@@ -20,6 +20,7 @@ var scroll_position
 var speed = 0
 var enemy_scene = preload("res://scenes/Enemy.tscn")
 var missile_scene = preload("res://scenes/Missile.tscn")
+var beam_scene = preload("res://scenes/Beam.tscn")
 var player_scene = preload("res://scenes/Player.tscn")
 var sky_pos = 0
 var enemies_to_spawn = 10
@@ -133,6 +134,13 @@ func fire_missile():
 	var m = missile_scene.instance()
 	terrain.add_child(m)
 	m.start(terrain, scroll_position, speed, terrain.last_point.x)
+	player.get_node("Fire").play()
+
+
+func fire_beam():
+	var b = beam_scene.instance()
+	player.add_child(b)
+	b.fire(sign(player.get_node("Sprite").scale.x))
 	player.get_node("Fire").play()
 
 

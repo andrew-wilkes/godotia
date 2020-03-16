@@ -6,6 +6,9 @@
 extents = Vector2( 100, 1 )
 
 [node name="Beam" type="Area2D"]
+position = Vector2( 31, 2 )
+collision_layer = 8
+collision_mask = 0
 script = ExtResource( 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
