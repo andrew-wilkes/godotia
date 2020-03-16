@@ -58,8 +58,8 @@ func play_tween():
 				position = Vector2(100, rand_range(100, 120))
 				reach = rand_range(200, 400)
 				step = -1
-			else:
-				# dispose of this object after the tweens complete
-				queue_free()
-				return
+		3:
+			# dispose of this object after the tweens complete
+			queue_free()
+			return
 	tween.start()
