@@ -14,7 +14,7 @@ func enter():
 
 
 func animation_finished(_anim_name):
-	p.reset_size()
+	print(_anim_name)
 	count += 1
 	if count == 1:
 		fsm.change_to("player_lose_life")

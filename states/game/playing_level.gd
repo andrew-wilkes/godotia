@@ -27,7 +27,7 @@ func process(delta):
 	g.map.position_player(g.player, g.scroll_position, g.terrain)
 	g.map.update_all_entities(g.scroll_position)
 	process_inputs(delta)
-	if g.stats.lives <= 0:
+	if g.stats.lives < 0:
 		game_over()
 
 

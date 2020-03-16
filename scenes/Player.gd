@@ -85,7 +85,3 @@ func move(dx, dy = 0):
 	position += dv
 	if dx != 0: # Need to return value for sideways scroll
 		return dv.x
-
-
-func reset_size():
-	get_node("Sprite").get_material().set_shader_param("multiplier", 0)

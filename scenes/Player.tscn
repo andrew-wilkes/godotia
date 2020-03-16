@@ -26,6 +26,7 @@ shader_param/size = Vector2( 64, 26 )
 [sub_resource type="Animation" id=3]
 resource_name = "Explosion"
 length = 0.1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
@@ -45,10 +46,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.09, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0, 8 ]
+"values": [ 0, 8, 0 ]
 }
 
 [sub_resource type="Animation" id=4]
