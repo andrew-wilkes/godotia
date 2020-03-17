@@ -11,9 +11,6 @@ var shots = {
 	"fire_delay2": 1.1
 }
 
-func add_entity(entity, target):
-	get(target)[entity.get_instance_id()] = entity
-
 
 func get_status():
 	var pop = 0

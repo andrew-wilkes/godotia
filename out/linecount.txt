@@ -1,0 +1,139 @@
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2020-03-17 22:17:13
+count workspace : /home/andrew/Godot/github/andrew-wilkes/godotia
+total files : 127
+total code lines : 2093
+total comment lines : 32
+total blank lines : 584
+
+.gitignore, code is 9, comment is 0, blank is 3.
+.import/aparto.png-d18f434215592d61840b398050b1465f.md5, code is 2, comment is 0, blank is 1.
+.import/aparto.png-d18f434215592d61840b398050b1465f.stex, it is a binary file.
+.import/blip.wav-727bf1c79c1a2371734890a4bff343a2.md5, code is 2, comment is 0, blank is 1.
+.import/blip.wav-727bf1c79c1a2371734890a4bff343a2.sample, it is a binary file.
+.import/buzz.wav-81ab10bc8ec53ce2e30d5cfc694bd226.md5, code is 2, comment is 0, blank is 1.
+.import/buzz.wav-81ab10bc8ec53ce2e30d5cfc694bd226.sample, it is a binary file.
+.import/cylinder.png-99230563765911a4b84566d44d3b0932.md5, code is 2, comment is 0, blank is 1.
+.import/cylinder.png-99230563765911a4b84566d44d3b0932.stex, it is a binary file.
+.import/dadida.wav-b739ef4a36e9e693985201e390f4371b.md5, code is 2, comment is 0, blank is 1.
+.import/dadida.wav-b739ef4a36e9e693985201e390f4371b.sample, it is a binary file.
+.import/gas-tank.png-2120896c2375629653947aeefecee650.md5, code is 2, comment is 0, blank is 1.
+.import/gas-tank.png-2120896c2375629653947aeefecee650.stex, it is a binary file.
+.import/icon.png-487276ed1e3a0c39cad0279d744ee560.md5, code is 2, comment is 0, blank is 1.
+.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex, it is a binary file.
+.import/M484BulletCollection1.png-a29737e07392386b79bad3fc1e547156.md5, code is 2, comment is 0, blank is 1.
+.import/M484BulletCollection1.png-a29737e07392386b79bad3fc1e547156.stex, it is a binary file.
+.import/office.png-afc0d37f89f2db3d15bc514e99de23e0.md5, code is 2, comment is 0, blank is 1.
+.import/office.png-afc0d37f89f2db3d15bc514e99de23e0.stex, it is a binary file.
+.import/plane.png-2eb6980aa5e0d1776b85673cfafc875e.md5, code is 2, comment is 0, blank is 1.
+.import/plane.png-2eb6980aa5e0d1776b85673cfafc875e.stex, it is a binary file.
+.import/plane_32.png-827833df7cfc885ce2a0eaa9564c843c.md5, code is 2, comment is 0, blank is 1.
+.import/plane_32.png-827833df7cfc885ce2a0eaa9564c843c.stex, it is a binary file.
+.import/shot.wav-dc9e74567c5a3f864a60bb7f4ce630f4.md5, code is 2, comment is 0, blank is 1.
+.import/ufo-16.png-1cd1563db3a874db4661147c35908a94.md5, code is 2, comment is 0, blank is 1.
+.import/ufo-16.png-1cd1563db3a874db4661147c35908a94.stex, it is a binary file.
+.import/ufo-32.png-4fce1ecfc6164d970e900d1e863bfe8a.md5, code is 2, comment is 0, blank is 1.
+.import/ufo-32.png-4fce1ecfc6164d970e900d1e863bfe8a.stex, it is a binary file.
+.import/warp.ogg-b8e137b2de13ed16d97ab991debc3e10.md5, code is 2, comment is 0, blank is 1.
+.import/warp.ogg-b8e137b2de13ed16d97ab991debc3e10.oggstr, it is a binary file.
+.import/waw.ogg-2be1f8b00c9d2647e79706fc8391d1cc.md5, code is 2, comment is 0, blank is 1.
+.import/waw.ogg-2be1f8b00c9d2647e79706fc8391d1cc.oggstr, it is a binary file.
+.import/wawlow.ogg-cfe82f4081e470147d46ed35f1105558.md5, code is 2, comment is 0, blank is 1.
+.import/wawlow.ogg-cfe82f4081e470147d46ed35f1105558.oggstr, it is a binary file.
+.import/zzz.wav-ae70186e537ebe637bb78628f6522fb1.md5, code is 2, comment is 0, blank is 1.
+.import/zzz.wav-ae70186e537ebe637bb78628f6522fb1.sample, it is a binary file.
+audio/blip.wav, it is a binary file.
+audio/blip.wav.import, code is 16, comment is 0, blank is 5.
+audio/buzz.wav, it is a binary file.
+audio/buzz.wav.import, code is 16, comment is 0, blank is 5.
+audio/dadida.wav, it is a binary file.
+audio/dadida.wav.import, code is 16, comment is 0, blank is 5.
+audio/warp.ogg, it is a binary file.
+audio/warp.ogg.import, code is 10, comment is 0, blank is 5.
+audio/waw.ogg, it is a binary file.
+audio/waw.ogg.import, code is 10, comment is 0, blank is 5.
+audio/wawlow.ogg, it is a binary file.
+audio/wawlow.ogg.import, code is 10, comment is 0, blank is 5.
+audio/zzz.wav, it is a binary file.
+audio/zzz.wav.import, code is 16, comment is 0, blank is 5.
+autoload/globals.gd, code is 23, comment is 0, blank is 7.
+autoload/Structures.gd, code is 14, comment is 0, blank is 4.
+autoload/Structures.tscn, code is 42, comment is 0, blank is 16.
+default_env.tres, code is 5, comment is 0, blank is 2.
+docs/gdd.md, code is 6, comment is 0, blank is 4.
+extensions/building.gd, code is 3, comment is 0, blank is 2.
+extensions/energy_source.gd, code is 24, comment is 0, blank is 12.
+icon.png, it is a binary file.
+icon.png.import, code is 29, comment is 0, blank is 5.
+LICENSE, code is 17, comment is 0, blank is 4.
+project.godot, code is 2, comment is 0, blank is 0.
+README.md, code is 3, comment is 1, blank is 1.
+scenes/Beam.gd, code is 58, comment is 0, blank is 10.
+scenes/Beam.tscn, code is 19, comment is 0, blank is 6.
+scenes/Enemy.gd, code is 45, comment is 1, blank is 19.
+scenes/Enemy.tscn, code is 92, comment is 0, blank is 21.
+scenes/Flat.tscn, code is 8, comment is 0, blank is 3.
+scenes/Main.gd, code is 136, comment is 0, blank is 29.
+scenes/Main.tscn, code is 61, comment is 0, blank is 18.
+scenes/Map.gd, code is 24, comment is 0, blank is 11.
+scenes/Map.tscn, code is 22, comment is 0, blank is 4.
+scenes/Missile.gd, code is 12, comment is 0, blank is 5.
+scenes/Missile.tscn, code is 21, comment is 0, blank is 6.
+scenes/Player.gd, code is 59, comment is 0, blank is 28.
+scenes/Player.tscn, code is 101, comment is 0, blank is 20.
+scenes/Shot.gd, code is 10, comment is 0, blank is 7.
+scenes/Shot.tscn, code is 21, comment is 0, blank is 6.
+scenes/Sky.gd, code is 8, comment is 0, blank is 6.
+scenes/State.gd, code is 23, comment is 0, blank is 9.
+scenes/StateMachine.gd, code is 15, comment is 0, blank is 7.
+scenes/StateMachine.tscn, code is 4, comment is 0, blank is 2.
+scenes/Statistics.gd, code is 82, comment is 0, blank is 34.
+scenes/Statistics.tscn, code is 93, comment is 0, blank is 18.
+scenes/Structure.gd, code is 38, comment is 0, blank is 14.
+scenes/Structure.tscn, code is 42, comment is 0, blank is 9.
+scenes/Terrain.gd, code is 55, comment is 0, blank is 12.
+scenes/Terrain.tscn, code is 7, comment is 0, blank is 3.
+scenes/UI.gd, code is 20, comment is 0, blank is 9.
+scenes/UI.tscn, code is 56, comment is 0, blank is 10.
+states/enemy/draining_energy.gd, code is 14, comment is 0, blank is 4.
+states/enemy/enemy_dead.gd, code is 5, comment is 0, blank is 2.
+states/enemy/enemy_explode.gd, code is 15, comment is 0, blank is 4.
+states/enemy/enemy_idle.gd, code is 5, comment is 0, blank is 2.
+states/enemy/lifting.gd, code is 17, comment is 0, blank is 4.
+states/enemy/moving_to_player.gd, code is 20, comment is 0, blank is 6.
+states/enemy/moving_to_target.gd, code is 26, comment is 0, blank is 6.
+states/game/end_of_level.gd, code is 8, comment is 0, blank is 2.
+states/game/game_idle.gd, code is 16, comment is 0, blank is 6.
+states/game/game_over.gd, code is 13, comment is 0, blank is 2.
+states/game/playing_level.gd, code is 37, comment is 0, blank is 10.
+states/game/starting_game.gd, code is 16, comment is 0, blank is 2.
+states/player/player_active.gd, code is 19, comment is 0, blank is 6.
+states/player/player_dead.gd, code is 6, comment is 0, blank is 2.
+states/player/player_explode.gd, code is 16, comment is 0, blank is 4.
+states/player/player_hit.gd, code is 10, comment is 0, blank is 2.
+states/player/player_lose_life.gd, code is 9, comment is 0, blank is 2.
+states/player/player_respawn.gd, code is 7, comment is 0, blank is 2.
+textures/M484BulletCollection1.png, it is a binary file.
+textures/M484BulletCollection1.png.import, code is 29, comment is 0, blank is 5.
+textures/plane.png, it is a binary file.
+textures/plane.png.import, code is 29, comment is 0, blank is 5.
+textures/plane_32.png, it is a binary file.
+textures/plane_32.png.import, code is 29, comment is 0, blank is 5.
+textures/shaders/explosion.shader, code is 19, comment is 1, blank is 4.
+textures/shaders/star-sky.shader, code is 115, comment is 29, blank is 28.
+textures/structures/aparto.png, it is a binary file.
+textures/structures/aparto.png.import, code is 29, comment is 0, blank is 5.
+textures/structures/cylinder.png, it is a binary file.
+textures/structures/cylinder.png.import, code is 29, comment is 0, blank is 5.
+textures/structures/gas-tank.png, it is a binary file.
+textures/structures/gas-tank.png.import, code is 29, comment is 0, blank is 5.
+textures/structures/office.png, it is a binary file.
+textures/structures/office.png.import, code is 29, comment is 0, blank is 5.
+textures/ufo-16.png, it is a binary file.
+textures/ufo-16.png.import, code is 29, comment is 0, blank is 5.
+textures/ufo-32.png, it is a binary file.
+textures/ufo-32.png.import, code is 29, comment is 0, blank is 5.
+===============================================================================
