@@ -25,7 +25,7 @@ func _ready():
 
 func fire(_dir):
 	dir = _dir
-	reach *= dir
+	reach = rand_range(200, 400) * dir
 	position.x *= dir
 	play_tween()
 
