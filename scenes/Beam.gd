@@ -38,16 +38,19 @@ func _on_Tween_tween_all_completed():
 func play_tween():
 	match step:
 		0:
+			# Expand beam out
 			line.position.x = 0
 			tween.interpolate_property(line, "scale:x", 0, dir, dt)
 			tween.interpolate_property(shape, "scale:x", 0, dir, dt)
 			tween.interpolate_property(shape, "position:x", 0, reach / 2, dt)
 			tween.interpolate_property(line, "modulate", Color(1, 1, 1), Color(1, 1, 0), dt)
 		1:
+			# Move beam out
 			tween.interpolate_property(line, "position:x", 0, reach, dt)
 			tween.interpolate_property(shape, "position:x", reach / 2, reach * 1.5, dt)
 			tween.interpolate_property(line, "modulate", line.modulate, Color(1, 0.5, 0), dt)
 		2:
+			# Shrink beam down
 			tween.interpolate_property(line, "scale:x", dir, 0, dt)
 			tween.interpolate_property(line, "position:x", reach, reach * 2, dt)
 			tween.interpolate_property(shape, "scale:x", dir, 0, dt)
