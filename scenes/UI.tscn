@@ -57,9 +57,7 @@ margin_right = 292.0
 margin_bottom = 20.0
 text = "QUIT"
 
-[node name="Tween1" type="Tween" parent="."]
-
-[node name="Tween2" type="Tween" parent="."]
+[node name="Tween" type="Tween" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
