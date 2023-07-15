@@ -3,7 +3,7 @@ extends Structure
 const tag = "energy_source"
 const CHARGING_RATE = 30
 
-export(float, EXP, 0, 10000, 10) var max_energy = 100 setget set_max_energy
+export(float, EXP, 0, 10000, 10) var max_energy = 100.0 setget set_max_energy
 
 var energy  setget set_energy
 var charging = true

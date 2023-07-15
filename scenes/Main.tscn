@@ -76,4 +76,5 @@ margin_left = 443.001
 margin_top = 179.0
 margin_right = 743.001
 margin_bottom = 279.0
+
 [connection signal="timeout" from="Spawner" to="." method="_on_Spawner_timeout"]
